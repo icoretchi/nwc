@@ -106,7 +106,10 @@
         "lint": {
           "builder": "@nrwl/linter:eslint",
           "options": {
-            "lintFilePatterns": ["apps/ngshop/src/**/*.ts", "apps/ngshop/src/**/*.html"]
+            "lintFilePatterns": [
+              "apps/ngshop/src/**/*.ts",
+              "apps/ngshop/src/**/*.html"
+            ]
           }
         },
         "test": {
@@ -181,8 +184,8 @@
               ],
               "fileReplacements": [
                 {
-                  "replace": "apps/admin/src/environments/environment.ts",
-                  "with": "apps/admin/src/environments/environment.prod.ts"
+                  "replace": "environments/environment.ts",
+                  "with": "environments/environment.prod.ts"
                 }
               ],
               "outputHashing": "all"
@@ -219,7 +222,10 @@
         "lint": {
           "builder": "@nrwl/linter:eslint",
           "options": {
-            "lintFilePatterns": ["apps/admin/src/**/*.ts", "apps/admin/src/**/*.html"]
+            "lintFilePatterns": [
+              "apps/admin/src/**/*.ts",
+              "apps/admin/src/**/*.html"
+            ]
           }
         },
         "test": {
@@ -337,7 +343,10 @@
         "lint": {
           "builder": "@nrwl/linter:eslint",
           "options": {
-            "lintFilePatterns": ["libs/users/src/**/*.ts", "libs/users/src/**/*.html"]
+            "lintFilePatterns": [
+              "libs/users/src/**/*.ts",
+              "libs/users/src/**/*.html"
+            ]
           }
         }
       }
@@ -375,7 +384,10 @@
         "lint": {
           "builder": "@nrwl/linter:eslint",
           "options": {
-            "lintFilePatterns": ["libs/orders/src/**/*.ts", "libs/orders/src/**/*.html"]
+            "lintFilePatterns": [
+              "libs/orders/src/**/*.ts",
+              "libs/orders/src/**/*.html"
+            ]
           }
         }
       }

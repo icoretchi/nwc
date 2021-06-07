@@ -30,6 +30,7 @@
   "private": true,
   "dependencies": {
     "@angular/animations": "^12.0.0",
+    "@angular/cdk": "^12.0.3",
     "@angular/common": "^12.0.0",
     "@angular/compiler": "^12.0.0",
     "@angular/core": "^12.0.0",
@@ -70,12 +71,24 @@
     "eslint": "7.22.0",
     "eslint-config-prettier": "8.1.0",
     "eslint-plugin-cypress": "^2.10.3",
+    "import-sort": "^6.0.0",
+    "import-sort-cli": "^6.0.0",
+    "import-sort-parser-typescript": "^6.0.0",
+    "import-sort-style-module": "^6.0.0",
     "jest": "26.2.2",
     "jest-preset-angular": "8.4.0",
+    "js-beautify": "^1.13.13",
     "ng-packagr": "^12.0.0",
     "prettier": "2.2.1",
     "ts-jest": "26.5.5",
     "ts-node": "~9.1.1",
     "typescript": "~4.2.4"
+  },
+  "importSort": {
+    ".ts, .tsx": {
+      "parser": "typescript",
+      "style": "module",
+      "options": {}
+    }
   }
 }
