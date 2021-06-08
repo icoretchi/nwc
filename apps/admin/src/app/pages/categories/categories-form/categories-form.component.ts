@@ -26,13 +26,16 @@ export class CategoriesFormComponent implements OnInit {
   ) {}
 
   ngOnInit(): void {
+    this._initForm();
+    this._checkEditMode();
+  }
+
+  private _initForm() {
     this.form = this.formBulder.group({
       name: ['', Validators.required],
       icon: ['', Validators.required],
       color: ['#fff'],
     });
-
-    this._checkEditMode();
   }
 
   onSubmit() {
@@ -59,28 +62,18 @@ export class CategoriesFormComponent implements OnInit {
     this.location.back();
   }
 
-  private _updateCategory(category: Category) {
-    this.categoriesService.updateCategory(category).subscribe(
-      () => {
-        this.messageService.add({
-          severity: 'success',
-          summary: 'Success',
-          detail: 'Category has been updated',
-        });
-        timer(2000)
-          .toPromise()
-          .then(() => {
-            this.location.back();
-          });
-      },
-      () => {
-        this.messageService.add({
-          severity: 'error',
-          summary: 'Error',
-          detail: 'Category has not been updated',
+  private _checkEditMode() {
+    this.route.params.subscribe((param) => {
+      if (param.id) {
+        this.editMode = true;
+        this.currentCategoryId = param.id;
+        this.categoriesService.getCategory(param.id).subscribe((category) => {
+          this.categoryForm.name.setValue(category.name);
+          this.categoryForm.icon.setValue(category.icon);
+          this.categoryForm.color.setValue(category.color);
         });
       }
-    );
+    });
   }
 
   private _addCategory(category: Category) {
@@ -107,18 +100,28 @@ export class CategoriesFormComponent implements OnInit {
     );
   }
 
-  private _checkEditMode() {
-    this.route.params.subscribe((param) => {
-      if (param.id) {
-        this.editMode = true;
-        this.currentCategoryId = param.id;
-        this.categoriesService.getCategory(param.id).subscribe((category) => {
-          this.categoryForm.name.setValue(category.name);
-          this.categoryForm.icon.setValue(category.icon);
-          this.categoryForm.color.setValue(category.color);
+  private _updateCategory(category: Category) {
+    this.categoriesService.updateCategory(category).subscribe(
+      () => {
+        this.messageService.add({
+          severity: 'success',
+          summary: 'Success',
+          detail: 'Category has been updated',
+        });
+        timer(2000)
+          .toPromise()
+          .then(() => {
+            this.location.back();
+          });
+      },
+      () => {
+        this.messageService.add({
+          severity: 'error',
+          summary: 'Error',
+          detail: 'Category has not been updated',
         });
       }
-    });
+    );
   }
 
   get categoryForm() {

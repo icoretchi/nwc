@@ -28,6 +28,10 @@ export class CategoriesListComponent implements OnInit {
     });
   }
 
+  updateCategory(categoryId: string) {
+    this.router.navigateByUrl(`/categories/form/${categoryId}`);
+  }
+
   deleteCategory(categoryId: string) {
     this.confirmationService.confirm({
       message: 'Do you want to delete this Category?',
@@ -54,9 +58,5 @@ export class CategoriesListComponent implements OnInit {
       },
       reject: () => {},
     });
-  }
-
-  updateCategory(categoryId: string) {
-    this.router.navigateByUrl(`/categories/form/${categoryId}`);
   }
 }

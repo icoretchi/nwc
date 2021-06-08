@@ -20,7 +20,8 @@
       "@nwc/users": ["libs/users/src/index.ts"],
       "@nwc/orders": ["libs/orders/src/index.ts"],
       "@env/*": ["environments/*"]
-    }
+    },
+    "noImplicitAny": false
   },
   "exclude": ["node_modules", "tmp"]
 }
