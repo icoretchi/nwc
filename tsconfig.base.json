@@ -21,7 +21,8 @@
       "@nwc/orders": ["libs/orders/src/index.ts"],
       "@env/*": ["environments/*"]
     },
-    "noImplicitAny": false
+    "noImplicitAny": false,
+    "strictNullChecks": false
   },
   "exclude": ["node_modules", "tmp"]
 }
