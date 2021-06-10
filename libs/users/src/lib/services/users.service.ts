@@ -3,6 +3,7 @@ import { Injectable } from '@angular/core';
 import { environment } from '@env/environment';
 import * as countriesLib from 'i18n-iso-countries';
 import { Observable } from 'rxjs';
+import { map } from 'rxjs/operators';
 
 import { User } from '../models/user';
 
@@ -52,5 +53,11 @@ export class UsersService {
 
   getCountry(countryKey: string): string {
     return countriesLib.getName(countryKey, 'en');
+  }
+
+  getUsersCount(): Observable<number> {
+    return this.http
+      .get<number>(`${this.apiURLUsers}/get/count`)
+      .pipe(map((objectValue: any) => objectValue.userCount));
   }
 }
