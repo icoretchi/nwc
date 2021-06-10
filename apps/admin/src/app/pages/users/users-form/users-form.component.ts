@@ -1,11 +1,12 @@
 import { Location } from '@angular/common';
-import { Component, OnInit } from '@angular/core';
+import { Component, OnDestroy, OnInit } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { ActivatedRoute } from '@angular/router';
 import { User, UsersService } from '@nwc/users';
 import * as countriesLib from 'i18n-iso-countries';
 import { MessageService } from 'primeng/api';
-import { timer } from 'rxjs';
+import { Subject, timer } from 'rxjs';
+import { takeUntil } from 'rxjs/operators';
 
 declare const require;
 
@@ -14,13 +15,14 @@ declare const require;
   templateUrl: './users-form.component.html',
   styles: [],
 })
-export class UsersFormComponent implements OnInit {
+export class UsersFormComponent implements OnInit, OnDestroy {
   form!: FormGroup;
   isSubmitted = false;
   editmode = false;
   currentUserId = '';
   // eslint-disable-next-line @typescript-eslint/no-explicit-any
   countries: Array<any> = [];
+  endsubs$: Subject<any> = new Subject();
 
   constructor(
     private messageService: MessageService,
@@ -34,6 +36,11 @@ export class UsersFormComponent implements OnInit {
     this._initUserForm();
     this._getCountries();
     this._checkEditMode();
+  }
+
+  ngOnDestroy() {
+    this.endsubs$.next();
+    this.endsubs$.complete();
   }
 
   private _initUserForm() {
@@ -66,51 +73,57 @@ export class UsersFormComponent implements OnInit {
   }
 
   private _addUser(user: User) {
-    this.usersService.createUser(user).subscribe(
-      (user: User) => {
-        this.messageService.add({
-          severity: 'success',
-          summary: 'Success',
-          detail: `User ${user.name} is created!`,
-        });
-        timer(2000)
-          .toPromise()
-          .then(() => {
-            this.location.back();
+    this.usersService
+      .createUser(user)
+      .pipe(takeUntil(this.endsubs$))
+      .subscribe(
+        (user: User) => {
+          this.messageService.add({
+            severity: 'success',
+            summary: 'Success',
+            detail: `User ${user.name} is created!`,
           });
-      },
-      () => {
-        this.messageService.add({
-          severity: 'error',
-          summary: 'Error',
-          detail: 'User is not created!',
-        });
-      }
-    );
+          timer(2000)
+            .toPromise()
+            .then(() => {
+              this.location.back();
+            });
+        },
+        () => {
+          this.messageService.add({
+            severity: 'error',
+            summary: 'Error',
+            detail: 'User is not created!',
+          });
+        }
+      );
   }
 
   private _updateUser(user: User) {
-    this.usersService.updateUser(user).subscribe(
-      () => {
-        this.messageService.add({
-          severity: 'success',
-          summary: 'Success',
-          detail: 'User is updated!',
-        });
-        timer(2000)
-          .toPromise()
-          .then(() => {
-            this.location.back();
+    this.usersService
+      .updateUser(user)
+      .pipe(takeUntil(this.endsubs$))
+      .subscribe(
+        () => {
+          this.messageService.add({
+            severity: 'success',
+            summary: 'Success',
+            detail: 'User is updated!',
           });
-      },
-      () => {
-        this.messageService.add({
-          severity: 'error',
-          summary: 'Error',
-          detail: 'User is not updated!',
-        });
-      }
-    );
+          timer(2000)
+            .toPromise()
+            .then(() => {
+              this.location.back();
+            });
+        },
+        () => {
+          this.messageService.add({
+            severity: 'error',
+            summary: 'Error',
+            detail: 'User is not updated!',
+          });
+        }
+      );
   }
 
   private _checkEditMode() {
@@ -118,20 +131,23 @@ export class UsersFormComponent implements OnInit {
       if (params.id) {
         this.editmode = true;
         this.currentUserId = params.id;
-        this.usersService.getUser(params.id).subscribe((user) => {
-          this.userForm.name.setValue(user.name);
-          this.userForm.email.setValue(user.email);
-          this.userForm.phone.setValue(user.phone);
-          this.userForm.isAdmin.setValue(user.isAdmin);
-          this.userForm.street.setValue(user.street);
-          this.userForm.apartment.setValue(user.apartment);
-          this.userForm.zip.setValue(user.zip);
-          this.userForm.city.setValue(user.city);
-          this.userForm.country.setValue(user.country);
+        this.usersService
+          .getUser(params.id)
+          .pipe(takeUntil(this.endsubs$))
+          .subscribe((user) => {
+            this.userForm.name.setValue(user.name);
+            this.userForm.email.setValue(user.email);
+            this.userForm.phone.setValue(user.phone);
+            this.userForm.isAdmin.setValue(user.isAdmin);
+            this.userForm.street.setValue(user.street);
+            this.userForm.apartment.setValue(user.apartment);
+            this.userForm.zip.setValue(user.zip);
+            this.userForm.city.setValue(user.city);
+            this.userForm.country.setValue(user.country);
 
-          this.userForm.password.setValidators([]);
-          this.userForm.password.updateValueAndValidity();
-        });
+            this.userForm.password.setValidators([]);
+            this.userForm.password.updateValueAndValidity();
+          });
       }
     });
   }
