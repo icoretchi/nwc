@@ -1,11 +1,12 @@
-import { HttpClientModule } from '@angular/common/http';
+import { HTTP_INTERCEPTORS, HttpClientModule } from '@angular/common/http';
 import { NgModule } from '@angular/core';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { BrowserModule } from '@angular/platform-browser';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { RouterModule, Routes } from '@angular/router';
 import { CategoriesService } from '@nwc/products';
-import { UsersService } from '@nwc/users';
+import { AuthGuard, JwtInterceptor, UsersService } from '@nwc/users';
+import { UsersModule } from '@nwc/users';
 import { ConfirmationService, MessageService } from 'primeng/api';
 import { ButtonModule } from 'primeng/button';
 import { CardModule } from 'primeng/card';
@@ -60,6 +61,7 @@ const routes: Routes = [
   {
     path: '',
     component: ShellComponent,
+    canActivate: [AuthGuard],
     children: [
       {
         path: 'dashboard',
@@ -133,6 +135,7 @@ const routes: Routes = [
     HttpClientModule,
     FormsModule,
     ReactiveFormsModule,
+    UsersModule,
     RouterModule.forRoot(routes, { initialNavigation: 'enabled' }),
     ...UI_MODULES,
   ],
@@ -141,6 +144,7 @@ const routes: Routes = [
     MessageService,
     ConfirmationService,
     UsersService,
+    { provide: HTTP_INTERCEPTORS, useClass: JwtInterceptor, multi: true },
   ],
   bootstrap: [AppComponent],
 })

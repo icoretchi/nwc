@@ -13,7 +13,7 @@ import { ORDER_STATUS } from '../order.constants';
 export class OrdersDetailComponent implements OnInit {
   order!: Order;
   orderStatuses = [];
-  selectedStatus: any;
+  selectedStatus: unknown;
 
   constructor(
     private ordersService: OrdersService,
