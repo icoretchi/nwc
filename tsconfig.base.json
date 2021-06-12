@@ -15,11 +15,11 @@
     "skipDefaultLibCheck": true,
     "baseUrl": ".",
     "paths": {
-      "@nwc/ui": ["libs/ui/src/index.ts"],
       "@nwc/products": ["libs/products/src/index.ts"],
       "@nwc/users": ["libs/users/src/index.ts"],
       "@nwc/orders": ["libs/orders/src/index.ts"],
-      "@env/*": ["environments/*"]
+      "@env/*": ["environments/*"],
+      "@nwc/ui": ["libs/ui/src/index.ts"]
     },
     "noImplicitAny": false,
     "strictNullChecks": false

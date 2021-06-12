@@ -33,9 +33,6 @@
       "tags": [],
       "implicitDependencies": ["admin"]
     },
-    "ui": {
-      "tags": []
-    },
     "products": {
       "tags": []
     },
@@ -43,6 +40,9 @@
       "tags": []
     },
     "orders": {
+      "tags": []
+    },
+    "ui": {
       "tags": []
     }
   }

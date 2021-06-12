@@ -13,7 +13,7 @@
           "error",
           {
             "type": "attribute",
-            "prefix": "ui",
+            "prefix": "nwc",
             "style": "camelCase"
           }
         ],
@@ -21,12 +21,10 @@
           "error",
           {
             "type": "element",
-            "prefix": "ui",
+            "prefix": "nwc",
             "style": "kebab-case"
           }
-        ],
-        "@typescript-eslint/no-empty-function": "off",
-        "@angular-eslint/no-empty-lifecycle-method": "off"
+        ]
       }
     },
     {
