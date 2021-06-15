@@ -1,5 +1,3 @@
-import { User } from '@nwc/users';
-
 import { OrderItem } from './order-item';
 
 export class Order {
@@ -11,8 +9,8 @@ export class Order {
   zip?: string;
   country?: string;
   phone?: string;
-  status?: string;
+  status?: number;
   totalPrice?: string;
-  user?: User;
+  user?: any;
   dateOrdered?: string;
 }

@@ -24,7 +24,6 @@ export class ProductsService {
         }
       : {};
 
-    console.log(categoriesFilter, options);
     return this.http.get<Product[]>(this.apiURLProducts, options);
   }
 

@@ -69,7 +69,6 @@ export class UsersFormComponent implements OnInit, OnDestroy {
         name: entry[1],
       };
     });
-    console.log(this.countries);
   }
 
   private _addUser(user: User) {

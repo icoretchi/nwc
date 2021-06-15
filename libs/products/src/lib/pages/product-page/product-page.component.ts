@@ -1,5 +1,6 @@
 import { Component, OnDestroy, OnInit } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
+import { CartItem, CartService } from '@nwc/orders';
 import { Subject } from 'rxjs';
 import { takeUntil } from 'rxjs/operators';
 
@@ -14,11 +15,12 @@ import { ProductsService } from '../../services/products.service';
 export class ProductPageComponent implements OnInit, OnDestroy {
   product: Product;
   endsubs$: Subject<any> = new Subject();
-  quantity: number;
+  quantity = 1;
 
   constructor(
     private productsService: ProductsService,
-    private route: ActivatedRoute
+    private route: ActivatedRoute,
+    private cartService: CartService
   ) {}
 
   ngOnInit(): void {
@@ -43,5 +45,12 @@ export class ProductPageComponent implements OnInit, OnDestroy {
       });
   }
 
-  addProductToCart() {}
+  addProductToCart() {
+    const cartItem: CartItem = {
+      productId: this.product.id,
+      quantity: this.quantity,
+    };
+
+    this.cartService.setCartItem(cartItem);
+  }
 }
