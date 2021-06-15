@@ -77,7 +77,6 @@ export class UsersListComponent implements OnInit, OnDestroy {
             }
           );
       },
-      reject: () => {},
     });
   }
 }

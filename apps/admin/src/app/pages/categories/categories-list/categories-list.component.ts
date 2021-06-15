@@ -70,7 +70,6 @@ export class CategoriesListComponent implements OnInit, OnDestroy {
             }
           );
       },
-      reject: () => {},
     });
   }
 }

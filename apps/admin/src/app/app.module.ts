@@ -4,8 +4,7 @@ import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { BrowserModule } from '@angular/platform-browser';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { CategoriesService } from '@nwc/products';
-import { JwtInterceptor, UsersService } from '@nwc/users';
-import { UsersModule } from '@nwc/users';
+import { JwtInterceptor, UsersModule } from '@nwc/users';
 import { ConfirmationService, MessageService } from 'primeng/api';
 import { ButtonModule } from 'primeng/button';
 import { CardModule } from 'primeng/card';
@@ -38,54 +37,54 @@ import { UsersListComponent } from './pages/users/users-list/users-list.componen
 import { ShellComponent } from './shared/shell/shell.component';
 import { SidebarComponent } from './shared/sidebar/sidebar.component';
 
-const UI_MODULES = [
+const UX_MODULE = [
   CardModule,
-  ToolbarModule,
-  TableModule,
-  InputTextModule,
   ToastModule,
+  InputTextModule,
+  TableModule,
+  ToolbarModule,
+  ButtonModule,
   ConfirmDialogModule,
   ColorPickerModule,
-  ButtonModule,
   InputNumberModule,
+  DropdownModule,
   InputTextareaModule,
   InputSwitchModule,
-  DropdownModule,
   EditorModule,
   TagModule,
   InputMaskModule,
   FieldsetModule,
 ];
+
 @NgModule({
   declarations: [
     AppComponent,
-    DashboardComponent,
-    ShellComponent,
     SidebarComponent,
+    ShellComponent,
+    DashboardComponent,
     CategoriesListComponent,
     CategoriesFormComponent,
     ProductsListComponent,
     ProductsFormComponent,
-    UsersFormComponent,
     UsersListComponent,
+    UsersFormComponent,
     OrdersListComponent,
     OrdersDetailComponent,
   ],
   imports: [
     BrowserModule,
     BrowserAnimationsModule,
+    AppRoutingModule,
     HttpClientModule,
     FormsModule,
     ReactiveFormsModule,
     UsersModule,
-    AppRoutingModule,
-    ...UI_MODULES,
+    ...UX_MODULE,
   ],
   providers: [
     CategoriesService,
     MessageService,
     ConfirmationService,
-    UsersService,
     { provide: HTTP_INTERCEPTORS, useClass: JwtInterceptor, multi: true },
   ],
   bootstrap: [AppComponent],

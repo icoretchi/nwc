@@ -1,4 +1,4 @@
-import { Component, Input, OnInit } from '@angular/core';
+import { Component, Input } from '@angular/core';
 import { CartItem, CartService } from '@nwc/orders';
 
 import { Product } from '../../models/product';
@@ -8,12 +8,10 @@ import { Product } from '../../models/product';
   templateUrl: './product-item.component.html',
   styleUrls: ['./product-item.component.scss'],
 })
-export class ProductItemComponent implements OnInit {
+export class ProductItemComponent {
   @Input() product: Product;
 
   constructor(private cartService: CartService) {}
-
-  ngOnInit(): void {}
 
   addProductToCart() {
     const cartItem: CartItem = {

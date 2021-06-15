@@ -8,18 +8,18 @@ import { takeUntil } from 'rxjs/operators';
 @Component({
   selector: 'admin-orders-detail',
   templateUrl: './orders-detail.component.html',
-  styleUrls: ['./orders-detail.component.scss'],
+  styles: [],
 })
 export class OrdersDetailComponent implements OnInit, OnDestroy {
-  order!: Order;
+  order: Order;
   orderStatuses = [];
-  selectedStatus: unknown;
+  selectedStatus: any;
   endsubs$: Subject<any> = new Subject();
 
   constructor(
-    private ordersService: OrdersService,
-    private route: ActivatedRoute,
-    private messageService: MessageService
+    private orderService: OrdersService,
+    private messageService: MessageService,
+    private route: ActivatedRoute
   ) {}
 
   ngOnInit(): void {
@@ -42,10 +42,10 @@ export class OrdersDetailComponent implements OnInit, OnDestroy {
   }
 
   private _getOrder() {
-    this.route.params.subscribe((param) => {
-      if (param.id) {
-        this.ordersService
-          .getOrder(param.id)
+    this.route.params.subscribe((params) => {
+      if (params.id) {
+        this.orderService
+          .getOrder(params.id)
           .pipe(takeUntil(this.endsubs$))
           .subscribe((order) => {
             this.order = order;
@@ -56,7 +56,7 @@ export class OrdersDetailComponent implements OnInit, OnDestroy {
   }
 
   onStatusChange(event) {
-    this.ordersService
+    this.orderService
       .updateOrder({ status: event.value }, this.order.id)
       .pipe(takeUntil(this.endsubs$))
       .subscribe(
@@ -64,14 +64,14 @@ export class OrdersDetailComponent implements OnInit, OnDestroy {
           this.messageService.add({
             severity: 'success',
             summary: 'Success',
-            detail: 'Order has been updated',
+            detail: 'Order is updated!',
           });
         },
         () => {
           this.messageService.add({
             severity: 'error',
             summary: 'Error',
-            detail: 'Order has not been updated',
+            detail: 'Order is not updated!',
           });
         }
       );

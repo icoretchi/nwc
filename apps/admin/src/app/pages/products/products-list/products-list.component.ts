@@ -70,7 +70,6 @@ export class ProductsListComponent implements OnInit, OnDestroy {
             }
           );
       },
-      reject: () => {},
     });
   }
 }
