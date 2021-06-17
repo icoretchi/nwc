@@ -9,6 +9,8 @@
     "start": "ng serve",
     "build": "ng build",
     "test": "ng test",
+    "build-ngshop-prod": "nx build ngshop --prod --output-path ../ngshop --base-href /ngshop/",
+    "build-admin-prod": "nx build admin --prod --output-path ../admin --base-href /admin/",
     "lint": "nx workspace-lint && ng lint",
     "e2e": "ng e2e",
     "affected:apps": "nx affected:apps",
