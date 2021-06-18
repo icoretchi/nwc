@@ -6,5 +6,7 @@ module.exports = {
     '<rootDir>/libs/users',
     '<rootDir>/libs/orders',
     '<rootDir>/libs/ui',
+    '<rootDir>/apps/ngshop-api-node',
+    '<rootDir>/apps/ngshop-api-express',
   ],
 };
