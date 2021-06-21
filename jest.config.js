@@ -8,5 +8,9 @@ module.exports = {
     '<rootDir>/libs/ui',
     '<rootDir>/apps/ngshop-api-node',
     '<rootDir>/apps/ngshop-api-express',
+    '<rootDir>/libs/api/node/shared/core',
+    '<rootDir>/libs/api/node/shared/users',
+    '<rootDir>/libs/api/node/shared/infra',
+    '<rootDir>/libs/api/node/shared/utils',
   ],
 };

@@ -26,6 +26,18 @@
       "tags": [],
       "implicitDependencies": ["admin"]
     },
+    "api-node-shared-core": {
+      "tags": []
+    },
+    "api-node-shared-infra": {
+      "tags": []
+    },
+    "api-node-shared-users": {
+      "tags": []
+    },
+    "api-node-shared-utils": {
+      "tags": []
+    },
     "ngshop": {
       "tags": []
     },

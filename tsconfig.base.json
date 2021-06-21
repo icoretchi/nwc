@@ -16,6 +16,10 @@
     "baseUrl": ".",
     "paths": {
       "@env/*": ["environments/*"],
+      "@nwc/api/node/shared/core": ["libs/api/node/shared/core/src/index.ts"],
+      "@nwc/api/node/shared/infra": ["libs/api/node/shared/infra/src/index.ts"],
+      "@nwc/api/node/shared/users": ["libs/api/node/shared/users/src/index.ts"],
+      "@nwc/api/node/shared/utils": ["libs/api/node/shared/utils/src/index.ts"],
       "@nwc/orders": ["libs/orders/src/index.ts"],
       "@nwc/products": ["libs/products/src/index.ts"],
       "@nwc/ui": ["libs/ui/src/index.ts"],
