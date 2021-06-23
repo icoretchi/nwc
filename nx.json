@@ -44,6 +44,9 @@
     "ngshop-api-express": {
       "tags": []
     },
+    "ngshop-api-nest": {
+      "tags": []
+    },
     "ngshop-api-node": {
       "tags": []
     },

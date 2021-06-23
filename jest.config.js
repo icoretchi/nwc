@@ -12,5 +12,6 @@ module.exports = {
     '<rootDir>/libs/api/node/shared/users',
     '<rootDir>/libs/api/node/shared/infra',
     '<rootDir>/libs/api/node/shared/utils',
+    '<rootDir>/apps/ngshop-api-nest',
   ],
 };

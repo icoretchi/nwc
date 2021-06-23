@@ -1,1 +1,2 @@
-export * from './lib/api-node-shared-users';
+export * from './lib/services/';
+export * from './lib/services/authService';
