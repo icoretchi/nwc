@@ -1,81 +1,91 @@
 import { AggregateRoot } from '../base-classes/aggregate-root.base';
-import { Logger } from '../ports/logger.port';
-import { DomainEvent } from '.';
-import { final } from '../decorators/final.decorator';
-import { ID } from '../value-objects/id.value-object';
+import { UniqueEntityID } from '../base-classes/unique-entity-id.base';
+import { IDomainEvent } from './domain-event.interface';
 
-export interface EventHandler {
-  subscribeTo(event: DomainEvent): void;
-}
-
-export type EventCallback = (event: DomainEvent) => Promise<void>;
-
-type EventName = string;
-
-type DomainEventClass = new (...args: never[]) => DomainEvent;
-
-@final
 export class DomainEvents {
-  private static subscribers: Map<EventName, EventCallback[]> = new Map();
+  private static handlersMap = {};
+  private static markedAggregates: AggregateRoot<any>[] = [];
 
-  private static aggregates: AggregateRoot<unknown>[] = [];
+  /**
+   * @method markAggregateForDispatch
+   * @static
+   * @desc Called by aggregate root objects that have created domain
+   * events to eventually be dispatched when the infrastructure commits
+   * the unit of work.
+   */
 
-  public static subscribe<T extends DomainEvent>(
-    event: DomainEventClass,
-    callback: (event: T) => Promise<void>,
-  ): void {
-    const eventName: EventName = event.name;
-    if (!this.subscribers.has(eventName)) {
-      this.subscribers.set(eventName, []);
-    }
-    this.subscribers.get(eventName)?.push(callback as EventCallback);
-  }
+  public static markAggregateForDispatch(aggregate: AggregateRoot<any>): void {
+    const aggregateFound = !!this.findMarkedAggregateByID(aggregate.id);
 
-  public static prepareForPublish(aggregate: AggregateRoot<unknown>): void {
-    const aggregateFound = !!this.findAggregateByID(aggregate.id);
     if (!aggregateFound) {
-      this.aggregates.push(aggregate);
+      this.markedAggregates.push(aggregate);
     }
   }
 
-  public static async publishEvents(id: ID, logger: Logger): Promise<void> {
-    const aggregate = this.findAggregateByID(id);
-
-    if (aggregate) {
-      await Promise.all(
-        aggregate.domainEvents.map((event: DomainEvent) => {
-          logger.debug(
-            `[Domain Event published]: ${event.constructor.name} ${aggregate.id.value}`,
-          );
-          return this.publish(event);
-        }),
-      );
-      aggregate.clearEvents();
-      this.removeAggregateFromPublishList(aggregate);
-    }
+  private static dispatchAggregateEvents(aggregate: AggregateRoot<any>): void {
+    aggregate.domainEvents.forEach((event: IDomainEvent) =>
+      this.dispatch(event)
+    );
   }
 
-  private static findAggregateByID(id: ID): AggregateRoot<unknown> | undefined {
-    for (const aggregate of this.aggregates) {
+  private static removeAggregateFromMarkedDispatchList(
+    aggregate: AggregateRoot<any>
+  ): void {
+    const index = this.markedAggregates.findIndex((a) => a.equals(aggregate));
+    this.markedAggregates.splice(index, 1);
+  }
+
+  private static findMarkedAggregateByID(
+    id: UniqueEntityID
+  ): AggregateRoot<any> {
+    let found: AggregateRoot<any> = null;
+    for (const aggregate of this.markedAggregates) {
       if (aggregate.id.equals(id)) {
-        return aggregate;
+        found = aggregate;
       }
     }
+
+    return found;
   }
 
-  private static removeAggregateFromPublishList(
-    aggregate: AggregateRoot<unknown>,
+  public static dispatchEventsForAggregate(id: UniqueEntityID): void {
+    const aggregate = this.findMarkedAggregateByID(id);
+
+    if (aggregate) {
+      this.dispatchAggregateEvents(aggregate);
+      aggregate.clearEvents();
+      this.removeAggregateFromMarkedDispatchList(aggregate);
+    }
+  }
+
+  public static register(
+    callback: (event: IDomainEvent) => void,
+    eventClassName: string
   ): void {
-    const index = this.aggregates.findIndex(a => a.equals(aggregate));
-    this.aggregates.splice(index, 1);
+    // eslint-disable-next-line no-prototype-builtins
+    if (!this.handlersMap.hasOwnProperty(eventClassName)) {
+      this.handlersMap[eventClassName] = [];
+    }
+    this.handlersMap[eventClassName].push(callback);
   }
 
-  private static async publish(event: DomainEvent): Promise<void> {
-    const eventName: string = event.constructor.name;
+  public static clearHandlers(): void {
+    this.handlersMap = {};
+  }
 
-    if (this.subscribers.has(eventName)) {
-      const callbacks: EventCallback[] = this.subscribers.get(eventName) || [];
-      await Promise.all(callbacks.map(callback => callback(event)));
+  public static clearMarkedAggregates(): void {
+    this.markedAggregates = [];
+  }
+
+  private static dispatch(event: IDomainEvent): void {
+    const eventClassName: string = event.constructor.name;
+
+    // eslint-disable-next-line no-prototype-builtins
+    if (this.handlersMap.hasOwnProperty(eventClassName)) {
+      const handlers: any[] = this.handlersMap[eventClassName];
+      for (const handler of handlers) {
+        handler(event);
+      }
     }
   }
 }

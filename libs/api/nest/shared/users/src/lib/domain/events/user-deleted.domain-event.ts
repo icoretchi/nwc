@@ -3,7 +3,7 @@ import { UniqueEntityID } from '@nwc/api/nest/shared/core';
 
 import { UserEntity } from '../entities/user.entity';
 
-export class UserCreated implements IDomainEvent {
+export class UserDeleted implements IDomainEvent {
   public dateTimeOccurred: Date;
   public user: UserEntity;
 

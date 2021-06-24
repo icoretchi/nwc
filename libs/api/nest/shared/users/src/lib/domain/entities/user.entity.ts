@@ -1,61 +1,121 @@
-import { AggregateRoot } from '@nwc/api/nest/shared/core';
+import {
+  AggregateRoot,
+  Guard,
+  Result,
+  UniqueEntityID,
+} from '@nwc/api/nest/shared/core';
 
-import { UserCreatedDomainEvent } from '../events/user-created.domain-event';
-import { Address, AddressProps } from '../value-objects/address.value-object';
-import { Email } from '../value-objects/email.value-object';
+import { UserCreated } from '../events/user-created.domain-event';
+import { UserDeleted } from '../events/user-deleted.domain-event';
+import { UserLoggedIn } from '../events/user-logged-in.domain-event';
+import { JWTToken, RefreshToken } from '../value-objects/jwt';
+import { UserEmail } from '../value-objects/user-email.value-object';
+import { UserId } from '../value-objects/user-id.value-object';
+import { UserName } from '../value-objects/user-name.value-object';
+import { UserPassword } from '../value-objects/user-password.value-object';
 
 export interface UserProps {
-  email: Email;
-  address: Address;
+  email: UserEmail;
+  username: UserName;
+  password: UserPassword;
+  isEmailVerified?: boolean;
+  isAdminUser?: boolean;
+  accessToken?: JWTToken;
+  refreshToken?: RefreshToken;
+  isDeleted?: boolean;
+  lastLogin?: Date;
 }
-
-export interface UpdateUserAddressProps {
-  country?: string;
-  postalCode?: string;
-  street?: string;
-}
-
 export class UserEntity extends AggregateRoot<UserProps> {
-  constructor(props: UserProps) {
-    super(props);
-    /* adding "UserCreated" Domain Event that will be published
-    eventually so an event handler somewhere may receive it and do an
-    appropriate action, like sending confirmation email, adding user
-    to mailing list, send notification to slack etc */
-    this.addEvent(
-      new UserCreatedDomainEvent(this.id, this.props.email, this.address)
-    );
+  get userId(): UserId {
+    return UserId.create(this.id).getValue();
   }
 
-  /* Private properties and getters without a setter protects entity
-  from outside modifications by using assignment, for example:
-  "user.email = someOtherEmail". This technique only allows
-  updating value by using a dedicated 'update' method (see updateAddress below) */
-  get address(): Address {
-    return this.props.address;
-  }
-
-  get email(): Email {
+  get email(): UserEmail {
     return this.props.email;
   }
 
-  /* Update method only changes properties that we allow, in this
-   case only address. This prevents from illegal actions,
-   for example setting email from outside by doing something
-   like user.email = otherEmail */
-  updateAddress(props: UpdateUserAddressProps): void {
-    this.props.address = new Address({
-      ...this.props.address,
-      ...props,
-    } as AddressProps);
+  get username(): UserName {
+    return this.props.username;
   }
 
-  someBusinessLogic(): void {
-    // TODO: add example business logic
+  get password(): UserPassword {
+    return this.props.password;
   }
 
-  static validate(props: UserProps): void {
-    // TODO: example
-    // entity business rules validation to protect it's invariant
+  get accessToken(): string {
+    return this.props.accessToken;
+  }
+
+  get isDeleted(): boolean {
+    return this.props.isDeleted;
+  }
+
+  get isEmailVerified(): boolean {
+    return this.props.isEmailVerified;
+  }
+
+  get isAdminUser(): boolean {
+    return this.props.isAdminUser;
+  }
+
+  get lastLogin(): Date {
+    return this.props.lastLogin;
+  }
+
+  get refreshToken(): RefreshToken {
+    return this.props.refreshToken;
+  }
+
+  public isLoggedIn(): boolean {
+    return !!this.props.accessToken && !!this.props.refreshToken;
+  }
+
+  public setAccessToken(token: JWTToken, refreshToken: RefreshToken): void {
+    this.addDomainEvent(new UserLoggedIn(this));
+    this.props.accessToken = token;
+    this.props.refreshToken = refreshToken;
+    this.props.lastLogin = new Date();
+  }
+
+  public delete(): void {
+    if (!this.props.isDeleted) {
+      this.addDomainEvent(new UserDeleted(this));
+      this.props.isDeleted = true;
+    }
+  }
+
+  private constructor(props: UserProps, id?: UniqueEntityID) {
+    super(props, id);
+  }
+
+  public static create(
+    props: UserProps,
+    id?: UniqueEntityID
+  ): Result<UserEntity> {
+    const guardResult = Guard.againstNullOrUndefinedBulk([
+      { argument: props.username, argumentName: 'username' },
+      { argument: props.email, argumentName: 'email' },
+    ]);
+
+    if (!guardResult.succeeded) {
+      return Result.fail<UserEntity>(guardResult.message);
+    }
+
+    const isNewUser = !!id === false;
+    const user = new UserEntity(
+      {
+        ...props,
+        isDeleted: props.isDeleted ? props.isDeleted : false,
+        isEmailVerified: props.isEmailVerified ? props.isEmailVerified : false,
+        isAdminUser: props.isAdminUser ? props.isAdminUser : false,
+      },
+      id
+    );
+
+    if (isNewUser) {
+      user.addDomainEvent(new UserCreated(user));
+    }
+
+    return Result.ok<UserEntity>(user);
   }
 }

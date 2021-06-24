@@ -3,7 +3,7 @@ import { UniqueEntityID } from '@nwc/api/nest/shared/core';
 
 import { UserEntity } from '../entities/user.entity';
 
-export class UserCreated implements IDomainEvent {
+export class UserLoggedIn implements IDomainEvent {
   public dateTimeOccurred: Date;
   public user: UserEntity;
 
@@ -12,7 +12,7 @@ export class UserCreated implements IDomainEvent {
     this.user = user;
   }
 
-  getAggregateId(): UniqueEntityID {
+  public getAggregateId(): UniqueEntityID {
     return this.user.id;
   }
 }
