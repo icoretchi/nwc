@@ -8,7 +8,7 @@ import {
 import { UserCreated } from '../events/user-created.domain-event';
 import { UserDeleted } from '../events/user-deleted.domain-event';
 import { UserLoggedIn } from '../events/user-logged-in.domain-event';
-import { JWTToken, RefreshToken } from '../value-objects/jwt';
+import { JWTToken, RefreshToken } from '../types/jwt.type';
 import { UserEmail } from '../value-objects/user-email.value-object';
 import { UserId } from '../value-objects/user-id.value-object';
 import { UserName } from '../value-objects/user-name.value-object';

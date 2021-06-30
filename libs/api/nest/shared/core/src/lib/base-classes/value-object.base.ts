@@ -1,3 +1,5 @@
+import { Guard } from '../guard';
+
 interface ValueObjectProps {
   [index: string]: any;
 }
