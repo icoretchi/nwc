@@ -19,6 +19,9 @@
       "@nwc/api/nest/shared/common": [
         "libs/api/nest/shared/common/src/index.ts"
       ],
+      "@nwc/api/nest/shared/configuration": [
+        "libs/api/nest/shared/configuration/src/index.ts"
+      ],
       "@nwc/api/nest/shared/infrastructure": [
         "libs/api/nest/shared/infrastructure/src/index.ts"
       ],

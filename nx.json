@@ -29,6 +29,9 @@
     "api-nest-shared-common": {
       "tags": []
     },
+    "api-nest-shared-configuration": {
+      "tags": []
+    },
     "api-nest-shared-infrastructure": {
       "tags": [
         "platform:api",

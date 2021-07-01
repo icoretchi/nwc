@@ -1,12 +1,15 @@
 import { Module } from '@nestjs/common';
-import { CoreModule } from '@nwc/api/nest/shared/core';
+import {
+  AppConfigService,
+  ConfigurationModule,
+} from '@nwc/api/nest/shared/configuration';
 
 import { AppController } from './app.controller';
 import { AppService } from './app.service';
 
 @Module({
-  imports: [CoreModule],
+  imports: [ConfigurationModule],
   controllers: [AppController],
-  providers: [AppService],
+  providers: [AppService, AppConfigService],
 })
 export class AppModule {}
