@@ -280,6 +280,212 @@
         }
       }
     },
+    "api-nest-shared-user-core-application-services": {
+      "root": "libs/api/nest/shared/user/core/application-services",
+      "sourceRoot": "libs/api/nest/shared/user/core/application-services/src",
+      "projectType": "library",
+      "architect": {
+        "build": {
+          "builder": "@nrwl/node:package",
+          "outputs": ["{options.outputPath}"],
+          "options": {
+            "outputPath": "dist/libs/api/nest/shared/user/core/application-services",
+            "tsConfig": "libs/api/nest/shared/user/core/application-services/tsconfig.lib.json",
+            "packageJson": "libs/api/nest/shared/user/core/application-services/package.json",
+            "main": "libs/api/nest/shared/user/core/application-services/src/index.ts",
+            "assets": [
+              "libs/api/nest/shared/user/core/application-services/*.md"
+            ]
+          }
+        },
+        "lint": {
+          "builder": "@nrwl/linter:eslint",
+          "options": {
+            "lintFilePatterns": [
+              "libs/api/nest/shared/user/core/application-services/**/*.ts"
+            ]
+          }
+        },
+        "test": {
+          "builder": "@nrwl/jest:jest",
+          "outputs": [
+            "coverage/libs/api/nest/shared/user/core/application-services"
+          ],
+          "options": {
+            "jestConfig": "libs/api/nest/shared/user/core/application-services/jest.config.js",
+            "passWithNoTests": true
+          }
+        }
+      }
+    },
+    "api-nest-shared-user-core-domain": {
+      "root": "libs/api/nest/shared/user/core/domain",
+      "sourceRoot": "libs/api/nest/shared/user/core/domain/src",
+      "projectType": "library",
+      "architect": {
+        "build": {
+          "builder": "@nrwl/node:package",
+          "outputs": ["{options.outputPath}"],
+          "options": {
+            "outputPath": "dist/libs/api/nest/shared/user/core/domain",
+            "tsConfig": "libs/api/nest/shared/user/core/domain/tsconfig.lib.json",
+            "packageJson": "libs/api/nest/shared/user/core/domain/package.json",
+            "main": "libs/api/nest/shared/user/core/domain/src/index.ts",
+            "assets": ["libs/api/nest/shared/user/core/domain/*.md"]
+          }
+        },
+        "lint": {
+          "builder": "@nrwl/linter:eslint",
+          "options": {
+            "lintFilePatterns": [
+              "libs/api/nest/shared/user/core/domain/**/*.ts"
+            ]
+          }
+        },
+        "test": {
+          "builder": "@nrwl/jest:jest",
+          "outputs": ["coverage/libs/api/nest/shared/user/core/domain"],
+          "options": {
+            "jestConfig": "libs/api/nest/shared/user/core/domain/jest.config.js",
+            "passWithNoTests": true
+          }
+        }
+      }
+    },
+    "api-nest-shared-user-core-domain-services": {
+      "root": "libs/api/nest/shared/user/core/domain-services",
+      "sourceRoot": "libs/api/nest/shared/user/core/domain-services/src",
+      "projectType": "library",
+      "architect": {
+        "build": {
+          "builder": "@nrwl/node:package",
+          "outputs": ["{options.outputPath}"],
+          "options": {
+            "outputPath": "dist/libs/api/nest/shared/user/core/domain-services",
+            "tsConfig": "libs/api/nest/shared/user/core/domain-services/tsconfig.lib.json",
+            "packageJson": "libs/api/nest/shared/user/core/domain-services/package.json",
+            "main": "libs/api/nest/shared/user/core/domain-services/src/index.ts",
+            "assets": ["libs/api/nest/shared/user/core/domain-services/*.md"]
+          }
+        },
+        "lint": {
+          "builder": "@nrwl/linter:eslint",
+          "options": {
+            "lintFilePatterns": [
+              "libs/api/nest/shared/user/core/domain-services/**/*.ts"
+            ]
+          }
+        },
+        "test": {
+          "builder": "@nrwl/jest:jest",
+          "outputs": [
+            "coverage/libs/api/nest/shared/user/core/domain-services"
+          ],
+          "options": {
+            "jestConfig": "libs/api/nest/shared/user/core/domain-services/jest.config.js",
+            "passWithNoTests": true
+          }
+        }
+      }
+    },
+    "api-nest-shared-user-infrastructure": {
+      "root": "libs/api/nest/shared/user/infrastructure",
+      "sourceRoot": "libs/api/nest/shared/user/infrastructure/src",
+      "projectType": "library",
+      "architect": {
+        "build": {
+          "builder": "@nrwl/node:package",
+          "outputs": ["{options.outputPath}"],
+          "options": {
+            "outputPath": "dist/libs/api/nest/shared/user/infrastructure",
+            "tsConfig": "libs/api/nest/shared/user/infrastructure/tsconfig.lib.json",
+            "packageJson": "libs/api/nest/shared/user/infrastructure/package.json",
+            "main": "libs/api/nest/shared/user/infrastructure/src/index.ts",
+            "assets": ["libs/api/nest/shared/user/infrastructure/*.md"]
+          }
+        },
+        "lint": {
+          "builder": "@nrwl/linter:eslint",
+          "options": {
+            "lintFilePatterns": [
+              "libs/api/nest/shared/user/infrastructure/**/*.ts"
+            ]
+          }
+        },
+        "test": {
+          "builder": "@nrwl/jest:jest",
+          "outputs": ["coverage/libs/api/nest/shared/user/infrastructure"],
+          "options": {
+            "jestConfig": "libs/api/nest/shared/user/infrastructure/jest.config.js",
+            "passWithNoTests": true
+          }
+        }
+      }
+    },
+    "api-nest-shared-user-shell": {
+      "root": "libs/api/nest/shared/user/shell",
+      "sourceRoot": "libs/api/nest/shared/user/shell/src",
+      "projectType": "library",
+      "architect": {
+        "build": {
+          "builder": "@nrwl/node:package",
+          "outputs": ["{options.outputPath}"],
+          "options": {
+            "outputPath": "dist/libs/api/nest/shared/user/shell",
+            "tsConfig": "libs/api/nest/shared/user/shell/tsconfig.lib.json",
+            "packageJson": "libs/api/nest/shared/user/shell/package.json",
+            "main": "libs/api/nest/shared/user/shell/src/index.ts",
+            "assets": ["libs/api/nest/shared/user/shell/*.md"]
+          }
+        },
+        "lint": {
+          "builder": "@nrwl/linter:eslint",
+          "options": {
+            "lintFilePatterns": ["libs/api/nest/shared/user/shell/**/*.ts"]
+          }
+        },
+        "test": {
+          "builder": "@nrwl/jest:jest",
+          "outputs": ["coverage/libs/api/nest/shared/user/shell"],
+          "options": {
+            "jestConfig": "libs/api/nest/shared/user/shell/jest.config.js",
+            "passWithNoTests": true
+          }
+        }
+      }
+    },
+    "api-nest-shared-user-ui-rest": {
+      "root": "libs/api/nest/shared/user/ui-rest",
+      "sourceRoot": "libs/api/nest/shared/user/ui-rest/src",
+      "projectType": "library",
+      "architect": {
+        "build": {
+          "builder": "@nrwl/node:package",
+          "outputs": ["{options.outputPath}"],
+          "options": {
+            "outputPath": "dist/libs/api/nest/shared/user/ui-rest",
+            "tsConfig": "libs/api/nest/shared/user/ui-rest/tsconfig.lib.json",
+            "packageJson": "libs/api/nest/shared/user/ui-rest/package.json",
+            "main": "libs/api/nest/shared/user/ui-rest/src/index.ts",
+            "assets": ["libs/api/nest/shared/user/ui-rest/*.md"]
+          }
+        },
+        "lint": {
+          "builder": "@nrwl/linter:eslint",
+          "options": {
+            "lintFilePatterns": ["libs/api/nest/shared/user/ui-rest/**/*.ts"]
+          }
+        },
+        "test": {
+          "builder": "@nrwl/jest:jest",
+          "outputs": ["coverage/libs/api/nest/shared/user/ui-rest"],
+          "options": {
+            "jestConfig": "libs/api/nest/shared/user/ui-rest/jest.config.js",
+            "passWithNoTests": true
+          }
+        }
+      }
+    },
     "api-nest-shared-users": {
       "root": "libs/api/nest/shared/users",
       "sourceRoot": "libs/api/nest/shared/users/src",
@@ -307,212 +513,6 @@
           "outputs": ["coverage/libs/api/nest/shared/users"],
           "options": {
             "jestConfig": "libs/api/nest/shared/users/jest.config.js",
-            "passWithNoTests": true
-          }
-        }
-      }
-    },
-    "api-nest-shared-users-core-application-services": {
-      "root": "libs/api/nest/shared/users/core/application-services",
-      "sourceRoot": "libs/api/nest/shared/users/core/application-services/src",
-      "projectType": "library",
-      "architect": {
-        "build": {
-          "builder": "@nrwl/node:package",
-          "outputs": ["{options.outputPath}"],
-          "options": {
-            "outputPath": "dist/libs/api/nest/shared/users/core/application-services",
-            "tsConfig": "libs/api/nest/shared/users/core/application-services/tsconfig.lib.json",
-            "packageJson": "libs/api/nest/shared/users/core/application-services/package.json",
-            "main": "libs/api/nest/shared/users/core/application-services/src/index.ts",
-            "assets": [
-              "libs/api/nest/shared/users/core/application-services/*.md"
-            ]
-          }
-        },
-        "lint": {
-          "builder": "@nrwl/linter:eslint",
-          "options": {
-            "lintFilePatterns": [
-              "libs/api/nest/shared/users/core/application-services/**/*.ts"
-            ]
-          }
-        },
-        "test": {
-          "builder": "@nrwl/jest:jest",
-          "outputs": [
-            "coverage/libs/api/nest/shared/users/core/application-services"
-          ],
-          "options": {
-            "jestConfig": "libs/api/nest/shared/users/core/application-services/jest.config.js",
-            "passWithNoTests": true
-          }
-        }
-      }
-    },
-    "api-nest-shared-users-core-domain": {
-      "root": "libs/api/nest/shared/users/core/domain",
-      "sourceRoot": "libs/api/nest/shared/users/core/domain/src",
-      "projectType": "library",
-      "architect": {
-        "build": {
-          "builder": "@nrwl/node:package",
-          "outputs": ["{options.outputPath}"],
-          "options": {
-            "outputPath": "dist/libs/api/nest/shared/users/core/domain",
-            "tsConfig": "libs/api/nest/shared/users/core/domain/tsconfig.lib.json",
-            "packageJson": "libs/api/nest/shared/users/core/domain/package.json",
-            "main": "libs/api/nest/shared/users/core/domain/src/index.ts",
-            "assets": ["libs/api/nest/shared/users/core/domain/*.md"]
-          }
-        },
-        "lint": {
-          "builder": "@nrwl/linter:eslint",
-          "options": {
-            "lintFilePatterns": [
-              "libs/api/nest/shared/users/core/domain/**/*.ts"
-            ]
-          }
-        },
-        "test": {
-          "builder": "@nrwl/jest:jest",
-          "outputs": ["coverage/libs/api/nest/shared/users/core/domain"],
-          "options": {
-            "jestConfig": "libs/api/nest/shared/users/core/domain/jest.config.js",
-            "passWithNoTests": true
-          }
-        }
-      }
-    },
-    "api-nest-shared-users-core-domain-services": {
-      "root": "libs/api/nest/shared/users/core/domain-services",
-      "sourceRoot": "libs/api/nest/shared/users/core/domain-services/src",
-      "projectType": "library",
-      "architect": {
-        "build": {
-          "builder": "@nrwl/node:package",
-          "outputs": ["{options.outputPath}"],
-          "options": {
-            "outputPath": "dist/libs/api/nest/shared/users/core/domain-services",
-            "tsConfig": "libs/api/nest/shared/users/core/domain-services/tsconfig.lib.json",
-            "packageJson": "libs/api/nest/shared/users/core/domain-services/package.json",
-            "main": "libs/api/nest/shared/users/core/domain-services/src/index.ts",
-            "assets": ["libs/api/nest/shared/users/core/domain-services/*.md"]
-          }
-        },
-        "lint": {
-          "builder": "@nrwl/linter:eslint",
-          "options": {
-            "lintFilePatterns": [
-              "libs/api/nest/shared/users/core/domain-services/**/*.ts"
-            ]
-          }
-        },
-        "test": {
-          "builder": "@nrwl/jest:jest",
-          "outputs": [
-            "coverage/libs/api/nest/shared/users/core/domain-services"
-          ],
-          "options": {
-            "jestConfig": "libs/api/nest/shared/users/core/domain-services/jest.config.js",
-            "passWithNoTests": true
-          }
-        }
-      }
-    },
-    "api-nest-shared-users-infrastructure": {
-      "root": "libs/api/nest/shared/users/infrastructure",
-      "sourceRoot": "libs/api/nest/shared/users/infrastructure/src",
-      "projectType": "library",
-      "architect": {
-        "build": {
-          "builder": "@nrwl/node:package",
-          "outputs": ["{options.outputPath}"],
-          "options": {
-            "outputPath": "dist/libs/api/nest/shared/users/infrastructure",
-            "tsConfig": "libs/api/nest/shared/users/infrastructure/tsconfig.lib.json",
-            "packageJson": "libs/api/nest/shared/users/infrastructure/package.json",
-            "main": "libs/api/nest/shared/users/infrastructure/src/index.ts",
-            "assets": ["libs/api/nest/shared/users/infrastructure/*.md"]
-          }
-        },
-        "lint": {
-          "builder": "@nrwl/linter:eslint",
-          "options": {
-            "lintFilePatterns": [
-              "libs/api/nest/shared/users/infrastructure/**/*.ts"
-            ]
-          }
-        },
-        "test": {
-          "builder": "@nrwl/jest:jest",
-          "outputs": ["coverage/libs/api/nest/shared/users/infrastructure"],
-          "options": {
-            "jestConfig": "libs/api/nest/shared/users/infrastructure/jest.config.js",
-            "passWithNoTests": true
-          }
-        }
-      }
-    },
-    "api-nest-shared-users-shell": {
-      "root": "libs/api/nest/shared/users/shell",
-      "sourceRoot": "libs/api/nest/shared/users/shell/src",
-      "projectType": "library",
-      "architect": {
-        "build": {
-          "builder": "@nrwl/node:package",
-          "outputs": ["{options.outputPath}"],
-          "options": {
-            "outputPath": "dist/libs/api/nest/shared/users/shell",
-            "tsConfig": "libs/api/nest/shared/users/shell/tsconfig.lib.json",
-            "packageJson": "libs/api/nest/shared/users/shell/package.json",
-            "main": "libs/api/nest/shared/users/shell/src/index.ts",
-            "assets": ["libs/api/nest/shared/users/shell/*.md"]
-          }
-        },
-        "lint": {
-          "builder": "@nrwl/linter:eslint",
-          "options": {
-            "lintFilePatterns": ["libs/api/nest/shared/users/shell/**/*.ts"]
-          }
-        },
-        "test": {
-          "builder": "@nrwl/jest:jest",
-          "outputs": ["coverage/libs/api/nest/shared/users/shell"],
-          "options": {
-            "jestConfig": "libs/api/nest/shared/users/shell/jest.config.js",
-            "passWithNoTests": true
-          }
-        }
-      }
-    },
-    "api-nest-shared-users-ui-rest": {
-      "root": "libs/api/nest/shared/users/ui-rest",
-      "sourceRoot": "libs/api/nest/shared/users/ui-rest/src",
-      "projectType": "library",
-      "architect": {
-        "build": {
-          "builder": "@nrwl/node:package",
-          "outputs": ["{options.outputPath}"],
-          "options": {
-            "outputPath": "dist/libs/api/nest/shared/users/ui-rest",
-            "tsConfig": "libs/api/nest/shared/users/ui-rest/tsconfig.lib.json",
-            "packageJson": "libs/api/nest/shared/users/ui-rest/package.json",
-            "main": "libs/api/nest/shared/users/ui-rest/src/index.ts",
-            "assets": ["libs/api/nest/shared/users/ui-rest/*.md"]
-          }
-        },
-        "lint": {
-          "builder": "@nrwl/linter:eslint",
-          "options": {
-            "lintFilePatterns": ["libs/api/nest/shared/users/ui-rest/**/*.ts"]
-          }
-        },
-        "test": {
-          "builder": "@nrwl/jest:jest",
-          "outputs": ["coverage/libs/api/nest/shared/users/ui-rest"],
-          "options": {
-            "jestConfig": "libs/api/nest/shared/users/ui-rest/jest.config.js",
             "passWithNoTests": true
           }
         }

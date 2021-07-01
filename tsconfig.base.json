@@ -24,25 +24,25 @@
         "libs/api/nest/shared/infrastructure/src/index.ts"
       ],
       "@nwc/api/nest/shared/port": ["libs/api/nest/shared/port/src/index.ts"],
+      "@nwc/api/nest/shared/user/core/application-services": [
+        "libs/api/nest/shared/user/core/application-services/src/index.ts"
+      ],
+      "@nwc/api/nest/shared/user/core/domain": [
+        "libs/api/nest/shared/user/core/domain/src/index.ts"
+      ],
+      "@nwc/api/nest/shared/user/core/domain-services": [
+        "libs/api/nest/shared/user/core/domain-services/src/index.ts"
+      ],
+      "@nwc/api/nest/shared/user/infrastructure": [
+        "libs/api/nest/shared/user/infrastructure/src/index.ts"
+      ],
+      "@nwc/api/nest/shared/user/shell": [
+        "libs/api/nest/shared/user/shell/src/index.ts"
+      ],
+      "@nwc/api/nest/shared/user/ui-rest": [
+        "libs/api/nest/shared/user/ui-rest/src/index.ts"
+      ],
       "@nwc/api/nest/shared/users": ["libs/api/nest/shared/users/src/index.ts"],
-      "@nwc/api/nest/shared/users/core/application-services": [
-        "libs/api/nest/shared/users/core/application-services/src/index.ts"
-      ],
-      "@nwc/api/nest/shared/users/core/domain": [
-        "libs/api/nest/shared/users/core/domain/src/index.ts"
-      ],
-      "@nwc/api/nest/shared/users/core/domain-services": [
-        "libs/api/nest/shared/users/core/domain-services/src/index.ts"
-      ],
-      "@nwc/api/nest/shared/users/infrastructure": [
-        "libs/api/nest/shared/users/infrastructure/src/index.ts"
-      ],
-      "@nwc/api/nest/shared/users/shell": [
-        "libs/api/nest/shared/users/shell/src/index.ts"
-      ],
-      "@nwc/api/nest/shared/users/ui-rest": [
-        "libs/api/nest/shared/users/ui-rest/src/index.ts"
-      ],
       "@nwc/orders": ["libs/orders/src/index.ts"],
       "@nwc/products": ["libs/products/src/index.ts"],
       "@nwc/ui": ["libs/ui/src/index.ts"],

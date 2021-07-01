@@ -43,25 +43,25 @@
     "api-nest-shared-port": {
       "tags": ["platform:api", "tehnology:nest", "scope:shared", "type:port"]
     },
+    "api-nest-shared-user-core-application-services": {
+      "tags": []
+    },
+    "api-nest-shared-user-core-domain": {
+      "tags": []
+    },
+    "api-nest-shared-user-core-domain-services": {
+      "tags": []
+    },
+    "api-nest-shared-user-infrastructure": {
+      "tags": []
+    },
+    "api-nest-shared-user-shell": {
+      "tags": []
+    },
+    "api-nest-shared-user-ui-rest": {
+      "tags": []
+    },
     "api-nest-shared-users": {
-      "tags": []
-    },
-    "api-nest-shared-users-core-application-services": {
-      "tags": []
-    },
-    "api-nest-shared-users-core-domain": {
-      "tags": []
-    },
-    "api-nest-shared-users-core-domain-services": {
-      "tags": []
-    },
-    "api-nest-shared-users-infrastructure": {
-      "tags": []
-    },
-    "api-nest-shared-users-shell": {
-      "tags": []
-    },
-    "api-nest-shared-users-ui-rest": {
       "tags": []
     },
     "ngshop": {
