@@ -9,8 +9,6 @@ module.exports = {
     '<rootDir>/apps/ngshop-api-node',
     '<rootDir>/apps/ngshop-api-express',
     '<rootDir>/apps/ngshop-api-nest',
-    '<rootDir>/libs/api/nest/shared/core',
-    '<rootDir>/libs/api/nest/shared/users',
     '<rootDir>/libs/api/nest/shared/port',
     '<rootDir>/libs/api/nest/shared/infrastructure',
     '<rootDir>/libs/api/nest/shared/users/core/domain',

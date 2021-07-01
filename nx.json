@@ -29,9 +29,6 @@
     "api-nest-shared-common": {
       "tags": []
     },
-    "api-nest-shared-core": {
-      "tags": []
-    },
     "api-nest-shared-infrastructure": {
       "tags": [
         "platform:api",
@@ -59,9 +56,6 @@
       "tags": []
     },
     "api-nest-shared-user-ui-rest": {
-      "tags": []
-    },
-    "api-nest-shared-users": {
       "tags": []
     },
     "ngshop": {

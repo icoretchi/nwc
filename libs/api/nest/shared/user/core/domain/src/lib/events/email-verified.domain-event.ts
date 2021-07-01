@@ -1,6 +1,5 @@
 import { IDomainEvent } from '@nwc/api/nest/shared/common';
 import { UniqueEntityID } from '@nwc/api/nest/shared/common';
-import { UserInfo } from 'node:os';
 
 import { User } from '../entities/user.entity';
 

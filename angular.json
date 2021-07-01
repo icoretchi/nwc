@@ -184,38 +184,6 @@
         }
       }
     },
-    "api-nest-shared-core": {
-      "root": "libs/api/nest/shared/core",
-      "sourceRoot": "libs/api/nest/shared/core/src",
-      "projectType": "library",
-      "architect": {
-        "build": {
-          "builder": "@nrwl/node:package",
-          "outputs": ["{options.outputPath}"],
-          "options": {
-            "outputPath": "dist/libs/api/nest/shared/core",
-            "tsConfig": "libs/api/nest/shared/core/tsconfig.lib.json",
-            "packageJson": "libs/api/nest/shared/core/package.json",
-            "main": "libs/api/nest/shared/core/src/index.ts",
-            "assets": ["libs/api/nest/shared/core/*.md"]
-          }
-        },
-        "lint": {
-          "builder": "@nrwl/linter:eslint",
-          "options": {
-            "lintFilePatterns": ["libs/api/nest/shared/core/**/*.ts"]
-          }
-        },
-        "test": {
-          "builder": "@nrwl/jest:jest",
-          "outputs": ["coverage/libs/api/nest/shared/core"],
-          "options": {
-            "jestConfig": "libs/api/nest/shared/core/jest.config.js",
-            "passWithNoTests": true
-          }
-        }
-      }
-    },
     "api-nest-shared-infrastructure": {
       "root": "libs/api/nest/shared/infrastructure",
       "sourceRoot": "libs/api/nest/shared/infrastructure/src",
@@ -481,38 +449,6 @@
           "outputs": ["coverage/libs/api/nest/shared/user/ui-rest"],
           "options": {
             "jestConfig": "libs/api/nest/shared/user/ui-rest/jest.config.js",
-            "passWithNoTests": true
-          }
-        }
-      }
-    },
-    "api-nest-shared-users": {
-      "root": "libs/api/nest/shared/users",
-      "sourceRoot": "libs/api/nest/shared/users/src",
-      "projectType": "library",
-      "architect": {
-        "build": {
-          "builder": "@nrwl/node:package",
-          "outputs": ["{options.outputPath}"],
-          "options": {
-            "outputPath": "dist/libs/api/nest/shared/users",
-            "tsConfig": "libs/api/nest/shared/users/tsconfig.lib.json",
-            "packageJson": "libs/api/nest/shared/users/package.json",
-            "main": "libs/api/nest/shared/users/src/index.ts",
-            "assets": ["libs/api/nest/shared/users/*.md"]
-          }
-        },
-        "lint": {
-          "builder": "@nrwl/linter:eslint",
-          "options": {
-            "lintFilePatterns": ["libs/api/nest/shared/users/**/*.ts"]
-          }
-        },
-        "test": {
-          "builder": "@nrwl/jest:jest",
-          "outputs": ["coverage/libs/api/nest/shared/users"],
-          "options": {
-            "jestConfig": "libs/api/nest/shared/users/jest.config.js",
             "passWithNoTests": true
           }
         }

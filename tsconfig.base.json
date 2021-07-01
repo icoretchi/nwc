@@ -19,7 +19,6 @@
       "@nwc/api/nest/shared/common": [
         "libs/api/nest/shared/common/src/index.ts"
       ],
-      "@nwc/api/nest/shared/core": ["libs/api/nest/shared/core/src/index.ts"],
       "@nwc/api/nest/shared/infrastructure": [
         "libs/api/nest/shared/infrastructure/src/index.ts"
       ],
@@ -42,7 +41,6 @@
       "@nwc/api/nest/shared/user/ui-rest": [
         "libs/api/nest/shared/user/ui-rest/src/index.ts"
       ],
-      "@nwc/api/nest/shared/users": ["libs/api/nest/shared/users/src/index.ts"],
       "@nwc/orders": ["libs/orders/src/index.ts"],
       "@nwc/products": ["libs/products/src/index.ts"],
       "@nwc/ui": ["libs/ui/src/index.ts"],
