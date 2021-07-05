@@ -1,7 +1,6 @@
 import { Logger } from '@nestjs/common';
-// import { ConfigService } from '@nestjs/config';
 import { NestFactory } from '@nestjs/core';
-import { AppConfigService } from '@nwc/api/nest/shared/configuration';
+import { AppConfigService } from '@nwc/api/nest/shared/config/app';
 
 import { AppModule } from './app/app.module';
 

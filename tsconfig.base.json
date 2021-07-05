@@ -19,8 +19,26 @@
       "@nwc/api/nest/shared/common": [
         "libs/api/nest/shared/common/src/index.ts"
       ],
-      "@nwc/api/nest/shared/configuration": [
-        "libs/api/nest/shared/configuration/src/index.ts"
+      "@nwc/api/nest/shared/config/app": [
+        "libs/api/nest/shared/config/app/src/index.ts"
+      ],
+      "@nwc/api/nest/shared/config/auth": [
+        "libs/api/nest/shared/config/auth/src/index.ts"
+      ],
+      "@nwc/api/nest/shared/config/database/mongoose": [
+        "libs/api/nest/shared/config/database/mongoose/src/index.ts"
+      ],
+      "@nwc/api/nest/shared/config/database/sequelize": [
+        "libs/api/nest/shared/config/database/sequelize/src/index.ts"
+      ],
+      "@nwc/api/nest/shared/config/database/typeorm": [
+        "libs/api/nest/shared/config/database/typeorm/src/index.ts"
+      ],
+      "@nwc/api/nest/shared/config/elasticsearch": [
+        "libs/api/nest/shared/config/elasticsearch/src/index.ts"
+      ],
+      "@nwc/api/nest/shared/database": [
+        "libs/api/nest/shared/database/src/index.ts"
       ],
       "@nwc/api/nest/shared/infrastructure": [
         "libs/api/nest/shared/infrastructure/src/index.ts"

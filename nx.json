@@ -29,7 +29,25 @@
     "api-nest-shared-common": {
       "tags": []
     },
-    "api-nest-shared-configuration": {
+    "api-nest-shared-config-app": {
+      "tags": []
+    },
+    "api-nest-shared-config-auth": {
+      "tags": []
+    },
+    "api-nest-shared-config-database-mongoose": {
+      "tags": []
+    },
+    "api-nest-shared-config-database-sequelize": {
+      "tags": []
+    },
+    "api-nest-shared-config-database-typeorm": {
+      "tags": []
+    },
+    "api-nest-shared-config-elasticsearch": {
+      "tags": []
+    },
+    "api-nest-shared-database": {
       "tags": []
     },
     "api-nest-shared-infrastructure": {

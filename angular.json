@@ -184,33 +184,235 @@
         }
       }
     },
-    "api-nest-shared-configuration": {
-      "root": "libs/api/nest/shared/configuration",
-      "sourceRoot": "libs/api/nest/shared/configuration/src",
+    "api-nest-shared-config-app": {
+      "root": "libs/api/nest/shared/config/app",
+      "sourceRoot": "libs/api/nest/shared/config/app/src",
       "projectType": "library",
       "architect": {
         "build": {
           "builder": "@nrwl/node:package",
           "outputs": ["{options.outputPath}"],
           "options": {
-            "outputPath": "dist/libs/api/nest/shared/configuration",
-            "tsConfig": "libs/api/nest/shared/configuration/tsconfig.lib.json",
-            "packageJson": "libs/api/nest/shared/configuration/package.json",
-            "main": "libs/api/nest/shared/configuration/src/index.ts",
-            "assets": ["libs/api/nest/shared/configuration/*.md"]
+            "outputPath": "dist/libs/api/nest/shared/config/app",
+            "tsConfig": "libs/api/nest/shared/config/app/tsconfig.lib.json",
+            "packageJson": "libs/api/nest/shared/config/app/package.json",
+            "main": "libs/api/nest/shared/config/app/src/index.ts",
+            "assets": ["libs/api/nest/shared/config/app/*.md"]
           }
         },
         "lint": {
           "builder": "@nrwl/linter:eslint",
           "options": {
-            "lintFilePatterns": ["libs/api/nest/shared/configuration/**/*.ts"]
+            "lintFilePatterns": ["libs/api/nest/shared/config/app/**/*.ts"]
           }
         },
         "test": {
           "builder": "@nrwl/jest:jest",
-          "outputs": ["coverage/libs/api/nest/shared/configuration"],
+          "outputs": ["coverage/libs/api/nest/shared/config/app"],
           "options": {
-            "jestConfig": "libs/api/nest/shared/configuration/jest.config.js",
+            "jestConfig": "libs/api/nest/shared/config/app/jest.config.js",
+            "passWithNoTests": true
+          }
+        }
+      }
+    },
+    "api-nest-shared-config-auth": {
+      "root": "libs/api/nest/shared/config/auth",
+      "sourceRoot": "libs/api/nest/shared/config/auth/src",
+      "projectType": "library",
+      "architect": {
+        "build": {
+          "builder": "@nrwl/node:package",
+          "outputs": ["{options.outputPath}"],
+          "options": {
+            "outputPath": "dist/libs/api/nest/shared/config/auth",
+            "tsConfig": "libs/api/nest/shared/config/auth/tsconfig.lib.json",
+            "packageJson": "libs/api/nest/shared/config/auth/package.json",
+            "main": "libs/api/nest/shared/config/auth/src/index.ts",
+            "assets": ["libs/api/nest/shared/config/auth/*.md"]
+          }
+        },
+        "lint": {
+          "builder": "@nrwl/linter:eslint",
+          "options": {
+            "lintFilePatterns": ["libs/api/nest/shared/config/auth/**/*.ts"]
+          }
+        },
+        "test": {
+          "builder": "@nrwl/jest:jest",
+          "outputs": ["coverage/libs/api/nest/shared/config/auth"],
+          "options": {
+            "jestConfig": "libs/api/nest/shared/config/auth/jest.config.js",
+            "passWithNoTests": true
+          }
+        }
+      }
+    },
+    "api-nest-shared-config-database-mongoose": {
+      "root": "libs/api/nest/shared/config/database/mongoose",
+      "sourceRoot": "libs/api/nest/shared/config/database/mongoose/src",
+      "projectType": "library",
+      "architect": {
+        "build": {
+          "builder": "@nrwl/node:package",
+          "outputs": ["{options.outputPath}"],
+          "options": {
+            "outputPath": "dist/libs/api/nest/shared/config/database/mongoose",
+            "tsConfig": "libs/api/nest/shared/config/database/mongoose/tsconfig.lib.json",
+            "packageJson": "libs/api/nest/shared/config/database/mongoose/package.json",
+            "main": "libs/api/nest/shared/config/database/mongoose/src/index.ts",
+            "assets": ["libs/api/nest/shared/config/database/mongoose/*.md"]
+          }
+        },
+        "lint": {
+          "builder": "@nrwl/linter:eslint",
+          "options": {
+            "lintFilePatterns": [
+              "libs/api/nest/shared/config/database/mongoose/**/*.ts"
+            ]
+          }
+        },
+        "test": {
+          "builder": "@nrwl/jest:jest",
+          "outputs": ["coverage/libs/api/nest/shared/config/database/mongoose"],
+          "options": {
+            "jestConfig": "libs/api/nest/shared/config/database/mongoose/jest.config.js",
+            "passWithNoTests": true
+          }
+        }
+      }
+    },
+    "api-nest-shared-config-database-sequelize": {
+      "root": "libs/api/nest/shared/config/database/sequelize",
+      "sourceRoot": "libs/api/nest/shared/config/database/sequelize/src",
+      "projectType": "library",
+      "architect": {
+        "build": {
+          "builder": "@nrwl/node:package",
+          "outputs": ["{options.outputPath}"],
+          "options": {
+            "outputPath": "dist/libs/api/nest/shared/config/database/sequelize",
+            "tsConfig": "libs/api/nest/shared/config/database/sequelize/tsconfig.lib.json",
+            "packageJson": "libs/api/nest/shared/config/database/sequelize/package.json",
+            "main": "libs/api/nest/shared/config/database/sequelize/src/index.ts",
+            "assets": ["libs/api/nest/shared/config/database/sequelize/*.md"]
+          }
+        },
+        "lint": {
+          "builder": "@nrwl/linter:eslint",
+          "options": {
+            "lintFilePatterns": [
+              "libs/api/nest/shared/config/database/sequelize/**/*.ts"
+            ]
+          }
+        },
+        "test": {
+          "builder": "@nrwl/jest:jest",
+          "outputs": [
+            "coverage/libs/api/nest/shared/config/database/sequelize"
+          ],
+          "options": {
+            "jestConfig": "libs/api/nest/shared/config/database/sequelize/jest.config.js",
+            "passWithNoTests": true
+          }
+        }
+      }
+    },
+    "api-nest-shared-config-database-typeorm": {
+      "root": "libs/api/nest/shared/config/database/typeorm",
+      "sourceRoot": "libs/api/nest/shared/config/database/typeorm/src",
+      "projectType": "library",
+      "architect": {
+        "build": {
+          "builder": "@nrwl/node:package",
+          "outputs": ["{options.outputPath}"],
+          "options": {
+            "outputPath": "dist/libs/api/nest/shared/config/database/typeorm",
+            "tsConfig": "libs/api/nest/shared/config/database/typeorm/tsconfig.lib.json",
+            "packageJson": "libs/api/nest/shared/config/database/typeorm/package.json",
+            "main": "libs/api/nest/shared/config/database/typeorm/src/index.ts",
+            "assets": ["libs/api/nest/shared/config/database/typeorm/*.md"]
+          }
+        },
+        "lint": {
+          "builder": "@nrwl/linter:eslint",
+          "options": {
+            "lintFilePatterns": [
+              "libs/api/nest/shared/config/database/typeorm/**/*.ts"
+            ]
+          }
+        },
+        "test": {
+          "builder": "@nrwl/jest:jest",
+          "outputs": ["coverage/libs/api/nest/shared/config/database/typeorm"],
+          "options": {
+            "jestConfig": "libs/api/nest/shared/config/database/typeorm/jest.config.js",
+            "passWithNoTests": true
+          }
+        }
+      }
+    },
+    "api-nest-shared-config-elasticsearch": {
+      "root": "libs/api/nest/shared/config/elasticsearch",
+      "sourceRoot": "libs/api/nest/shared/config/elasticsearch/src",
+      "projectType": "library",
+      "architect": {
+        "build": {
+          "builder": "@nrwl/node:package",
+          "outputs": ["{options.outputPath}"],
+          "options": {
+            "outputPath": "dist/libs/api/nest/shared/config/elasticsearch",
+            "tsConfig": "libs/api/nest/shared/config/elasticsearch/tsconfig.lib.json",
+            "packageJson": "libs/api/nest/shared/config/elasticsearch/package.json",
+            "main": "libs/api/nest/shared/config/elasticsearch/src/index.ts",
+            "assets": ["libs/api/nest/shared/config/elasticsearch/*.md"]
+          }
+        },
+        "lint": {
+          "builder": "@nrwl/linter:eslint",
+          "options": {
+            "lintFilePatterns": [
+              "libs/api/nest/shared/config/elasticsearch/**/*.ts"
+            ]
+          }
+        },
+        "test": {
+          "builder": "@nrwl/jest:jest",
+          "outputs": ["coverage/libs/api/nest/shared/config/elasticsearch"],
+          "options": {
+            "jestConfig": "libs/api/nest/shared/config/elasticsearch/jest.config.js",
+            "passWithNoTests": true
+          }
+        }
+      }
+    },
+    "api-nest-shared-database": {
+      "root": "libs/api/nest/shared/database",
+      "sourceRoot": "libs/api/nest/shared/database/src",
+      "projectType": "library",
+      "architect": {
+        "build": {
+          "builder": "@nrwl/node:package",
+          "outputs": ["{options.outputPath}"],
+          "options": {
+            "outputPath": "dist/libs/api/nest/shared/database",
+            "tsConfig": "libs/api/nest/shared/database/tsconfig.lib.json",
+            "packageJson": "libs/api/nest/shared/database/package.json",
+            "main": "libs/api/nest/shared/database/src/index.ts",
+            "assets": ["libs/api/nest/shared/database/*.md"]
+          }
+        },
+        "lint": {
+          "builder": "@nrwl/linter:eslint",
+          "options": {
+            "lintFilePatterns": ["libs/api/nest/shared/database/**/*.ts"]
+          }
+        },
+        "test": {
+          "builder": "@nrwl/jest:jest",
+          "outputs": ["coverage/libs/api/nest/shared/database"],
+          "options": {
+            "jestConfig": "libs/api/nest/shared/database/jest.config.js",
             "passWithNoTests": true
           }
         }
