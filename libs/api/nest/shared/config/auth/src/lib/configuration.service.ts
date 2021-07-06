@@ -4,7 +4,7 @@ import { JwtModuleOptions, JwtOptionsFactory } from '@nestjs/jwt';
 
 @Injectable()
 export class OAuth2ConfigService {
-  constructor(private configService: ConfigService) { }
+  constructor(private configService: ConfigService) {}
 
   get clientId(): string {
     return this.configService.get<string>('oauth2.clientId');
@@ -22,11 +22,16 @@ export class OAuth2ConfigService {
 
 @Injectable()
 export class JwtConfigService implements JwtOptionsFactory {
-  constructor(private configService: ConfigService) { }
+  constructor(private configService: ConfigService) {}
+
   createJwtOptions(): JwtModuleOptions {
     return {
       secret: this.configService.get<string>('oauth2.jwtSecret'),
-      signOptions: { expiresIn: '3600s' }
+      signOptions: {
+        expiresIn: this.configService.get<string>('oauth2.expiresIn'),
+      },
     };
   }
 }
+
+
