@@ -21,6 +21,12 @@ export class TypeOrmConfigService implements TypeOrmOptionsFactory {
       migrationsRun: this.configService.get<boolean>('typeorm.migrationsRun'),
       synchronize: this.configService.get<boolean>('typeorm.sincronize'),
       cli: this.configService.get<any>('typeorm.cli'),
+      url: this.configService.get<any>('typeorm.url'),
+      autoLoadEntities: true,
+      useNewUrlParser: true,
+      useUnifiedTopology: true,
+      w: 'majority',
+      wtimeout: 2500,
     };
   }
 }

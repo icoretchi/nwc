@@ -1,7 +1,6 @@
 import { Module } from '@nestjs/common';
-import { ConfigModule } from '@nestjs/config';
 import { PassportModule } from '@nestjs/passport';
-import { jwtConfig } from '@nwc/api/nest/shared/config/auth';
+import { AuthConfigModule } from '@nwc/api/nest/shared/config/auth';
 
 import { JwtStrategy } from './adapter/in/auth/strategies/jwt.strategy';
 import { AuthController } from './adapter/in/web/auth.controller';
@@ -30,7 +29,7 @@ import { FindUserByUsernameService } from './application/service/query/find-user
     TokenProviderModule,
     UserPersistenceModule,
     PassportModule.register({ defaultStrategy: 'jwt' }),
-    ConfigModule.forFeature(jwtConfig),
+    AuthConfigModule,
   ],
   providers: [
     {
@@ -64,6 +63,10 @@ import { FindUserByUsernameService } from './application/service/query/find-user
     {
       provide: FIND_USER_BY_USERNAME_USE_CASE,
       useClass: FindUserByUsernameService,
+    },
+    {
+      provide: FIND_USER_BY_EMAIL_USE_CASE,
+      useClass: FindUserByEmailService,
     },
     {
       provide: FIND_USER_BY_EMAIL_USE_CASE,

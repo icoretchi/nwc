@@ -37,9 +37,6 @@
       "@nwc/api/nest/shared/config/elasticsearch": [
         "libs/api/nest/shared/config/elasticsearch/src/index.ts"
       ],
-      "@nwc/api/nest/shared/database": [
-        "libs/api/nest/shared/database/src/index.ts"
-      ],
       "@nwc/api/nest/shared/infrastructure": [
         "libs/api/nest/shared/infrastructure/src/index.ts"
       ],

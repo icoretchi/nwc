@@ -386,38 +386,6 @@
         }
       }
     },
-    "api-nest-shared-database": {
-      "root": "libs/api/nest/shared/database",
-      "sourceRoot": "libs/api/nest/shared/database/src",
-      "projectType": "library",
-      "architect": {
-        "build": {
-          "builder": "@nrwl/node:package",
-          "outputs": ["{options.outputPath}"],
-          "options": {
-            "outputPath": "dist/libs/api/nest/shared/database",
-            "tsConfig": "libs/api/nest/shared/database/tsconfig.lib.json",
-            "packageJson": "libs/api/nest/shared/database/package.json",
-            "main": "libs/api/nest/shared/database/src/index.ts",
-            "assets": ["libs/api/nest/shared/database/*.md"]
-          }
-        },
-        "lint": {
-          "builder": "@nrwl/linter:eslint",
-          "options": {
-            "lintFilePatterns": ["libs/api/nest/shared/database/**/*.ts"]
-          }
-        },
-        "test": {
-          "builder": "@nrwl/jest:jest",
-          "outputs": ["coverage/libs/api/nest/shared/database"],
-          "options": {
-            "jestConfig": "libs/api/nest/shared/database/jest.config.js",
-            "passWithNoTests": true
-          }
-        }
-      }
-    },
     "api-nest-shared-infrastructure": {
       "root": "libs/api/nest/shared/infrastructure",
       "sourceRoot": "libs/api/nest/shared/infrastructure/src",

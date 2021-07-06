@@ -8,6 +8,7 @@ import { validationSchema } from './validation-scheme';
 @Module({
   imports: [
     ConfigModule.forRoot({
+      isGlobal: true,
       load: [jwtConfig],
       validationSchema: validationSchema,
     }),
@@ -15,4 +16,4 @@ import { validationSchema } from './validation-scheme';
   providers: [ConfigService, OAuth2ConfigService, JwtConfigService],
   exports: [ConfigService, OAuth2ConfigService, JwtConfigService],
 })
-export class OAuth2ConfigModule {}
+export class AuthConfigModule {}

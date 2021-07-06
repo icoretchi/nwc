@@ -9,19 +9,22 @@ import {
   RequireAuthGuard,
   SelfValidationError,
 } from '@nwc/api/nest/shared/common';
-import { jwtConfig } from '@nwc/api/nest/shared/config/auth';
-import { TypeOrmConfigService } from '@nwc/api/nest/shared/config/database/typeorm';
+import { AppConfigModule } from '@nwc/api/nest/shared/config/app';
+import { AuthConfigModule } from '@nwc/api/nest/shared/config/auth';
+import {
+  TypeOrmConfigModule,
+  TypeOrmConfigService,
+} from '@nwc/api/nest/shared/config/database/typeorm';
 
 import { UserModule } from './user/user.module';
 
 @Module({
   imports: [
-    ConfigModule.forRoot({
-      load: [jwtConfig],
-      envFilePath: '.env',
-      ignoreEnvFile: !!process.env.CI,
-    }),
+    AppConfigModule,
+    AuthConfigModule,
+    TypeOrmConfigModule,
     TypeOrmModule.forRootAsync({
+      imports: [TypeOrmConfigModule],
       useClass: TypeOrmConfigService,
     }),
     UserModule,

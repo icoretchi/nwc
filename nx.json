@@ -47,9 +47,6 @@
     "api-nest-shared-config-elasticsearch": {
       "tags": []
     },
-    "api-nest-shared-database": {
-      "tags": []
-    },
     "api-nest-shared-infrastructure": {
       "tags": [
         "platform:api",

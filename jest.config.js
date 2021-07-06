@@ -19,7 +19,6 @@ module.exports = {
     '<rootDir>/libs/api/nest/shared/user/infrastructure',
     '<rootDir>/libs/api/nest/shared/user/shell',
     '<rootDir>/libs/api/nest/shared/user/ui-rest',
-    '<rootDir>/libs/api/nest/shared/database',
     '<rootDir>/libs/api/nest/shared/config/app/configuration',
     '<rootDir>/libs/api/nest/shared/config/app',
     '<rootDir>/libs/api/nest/shared/config/auth',

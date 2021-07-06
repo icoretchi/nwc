@@ -3,7 +3,7 @@ import * as Joi from 'joi';
 export const validationSchema = Joi.object({
   TYPEORM_CONNECTION: Joi.string().default('postgres'),
   TYPEORM_HOST: Joi.string().default('localhost'),
-  TYPEORM_PORT: Joi.number().default(5432),
+  // TYPEORM_PORT: Joi.number().default(5432),
   TYPEORM_USERNAME: Joi.string().default('postgres'),
   TYPEORM_PASSWORD: Joi.string().default('postgres'),
   TYPEORM_DATABASE: Joi.string().default('postgres'),
