@@ -26,5 +26,13 @@ module.exports = {
     '<rootDir>/libs/api/nest/shared/config/database/mongoose',
     '<rootDir>/libs/api/nest/shared/config/elasticsearch',
     '<rootDir>/libs/api/nest/shared/config/database/sequelize',
+    '<rootDir>/apps/ngshop-api-nest-ddd',
+    '<rootDir>/libs/api/nest/ngshop/user/core/domain',
+    '<rootDir>/libs/api/nest/ngshop/user/core/domain-services',
+    '<rootDir>/libs/api/nest/ngshop/user/core/application-services',
+    '<rootDir>/libs/api/nest/ngshop/user/core/ports',
+    '<rootDir>/libs/api/nest/ngshop/user/infrastructure',
+    '<rootDir>/libs/api/nest/ngshop/user/ui-rest',
+    '<rootDir>/libs/api/nest/ngshop/user/shell',
   ],
 };

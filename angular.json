@@ -152,6 +152,244 @@
         }
       }
     },
+    "api-nest-ngshop-user-core-application-services": {
+      "root": "libs/api/nest/ngshop/user/core/application-services",
+      "sourceRoot": "libs/api/nest/ngshop/user/core/application-services/src",
+      "projectType": "library",
+      "architect": {
+        "build": {
+          "builder": "@nrwl/node:package",
+          "outputs": ["{options.outputPath}"],
+          "options": {
+            "outputPath": "dist/libs/api/nest/ngshop/user/core/application-services",
+            "tsConfig": "libs/api/nest/ngshop/user/core/application-services/tsconfig.lib.json",
+            "packageJson": "libs/api/nest/ngshop/user/core/application-services/package.json",
+            "main": "libs/api/nest/ngshop/user/core/application-services/src/index.ts",
+            "assets": [
+              "libs/api/nest/ngshop/user/core/application-services/*.md"
+            ]
+          }
+        },
+        "lint": {
+          "builder": "@nrwl/linter:eslint",
+          "options": {
+            "lintFilePatterns": [
+              "libs/api/nest/ngshop/user/core/application-services/**/*.ts"
+            ]
+          }
+        },
+        "test": {
+          "builder": "@nrwl/jest:jest",
+          "outputs": [
+            "coverage/libs/api/nest/ngshop/user/core/application-services"
+          ],
+          "options": {
+            "jestConfig": "libs/api/nest/ngshop/user/core/application-services/jest.config.js",
+            "passWithNoTests": true
+          }
+        }
+      }
+    },
+    "api-nest-ngshop-user-core-domain": {
+      "root": "libs/api/nest/ngshop/user/core/domain",
+      "sourceRoot": "libs/api/nest/ngshop/user/core/domain/src",
+      "projectType": "library",
+      "architect": {
+        "build": {
+          "builder": "@nrwl/node:package",
+          "outputs": ["{options.outputPath}"],
+          "options": {
+            "outputPath": "dist/libs/api/nest/ngshop/user/core/domain",
+            "tsConfig": "libs/api/nest/ngshop/user/core/domain/tsconfig.lib.json",
+            "packageJson": "libs/api/nest/ngshop/user/core/domain/package.json",
+            "main": "libs/api/nest/ngshop/user/core/domain/src/index.ts",
+            "assets": ["libs/api/nest/ngshop/user/core/domain/*.md"]
+          }
+        },
+        "lint": {
+          "builder": "@nrwl/linter:eslint",
+          "options": {
+            "lintFilePatterns": [
+              "libs/api/nest/ngshop/user/core/domain/**/*.ts"
+            ]
+          }
+        },
+        "test": {
+          "builder": "@nrwl/jest:jest",
+          "outputs": ["coverage/libs/api/nest/ngshop/user/core/domain"],
+          "options": {
+            "jestConfig": "libs/api/nest/ngshop/user/core/domain/jest.config.js",
+            "passWithNoTests": true
+          }
+        }
+      }
+    },
+    "api-nest-ngshop-user-core-domain-services": {
+      "root": "libs/api/nest/ngshop/user/core/domain-services",
+      "sourceRoot": "libs/api/nest/ngshop/user/core/domain-services/src",
+      "projectType": "library",
+      "architect": {
+        "build": {
+          "builder": "@nrwl/node:package",
+          "outputs": ["{options.outputPath}"],
+          "options": {
+            "outputPath": "dist/libs/api/nest/ngshop/user/core/domain-services",
+            "tsConfig": "libs/api/nest/ngshop/user/core/domain-services/tsconfig.lib.json",
+            "packageJson": "libs/api/nest/ngshop/user/core/domain-services/package.json",
+            "main": "libs/api/nest/ngshop/user/core/domain-services/src/index.ts",
+            "assets": ["libs/api/nest/ngshop/user/core/domain-services/*.md"]
+          }
+        },
+        "lint": {
+          "builder": "@nrwl/linter:eslint",
+          "options": {
+            "lintFilePatterns": [
+              "libs/api/nest/ngshop/user/core/domain-services/**/*.ts"
+            ]
+          }
+        },
+        "test": {
+          "builder": "@nrwl/jest:jest",
+          "outputs": [
+            "coverage/libs/api/nest/ngshop/user/core/domain-services"
+          ],
+          "options": {
+            "jestConfig": "libs/api/nest/ngshop/user/core/domain-services/jest.config.js",
+            "passWithNoTests": true
+          }
+        }
+      }
+    },
+    "api-nest-ngshop-user-core-ports": {
+      "root": "libs/api/nest/ngshop/user/core/ports",
+      "sourceRoot": "libs/api/nest/ngshop/user/core/ports/src",
+      "projectType": "library",
+      "architect": {
+        "build": {
+          "builder": "@nrwl/node:package",
+          "outputs": ["{options.outputPath}"],
+          "options": {
+            "outputPath": "dist/libs/api/nest/ngshop/user/core/ports",
+            "tsConfig": "libs/api/nest/ngshop/user/core/ports/tsconfig.lib.json",
+            "packageJson": "libs/api/nest/ngshop/user/core/ports/package.json",
+            "main": "libs/api/nest/ngshop/user/core/ports/src/index.ts",
+            "assets": ["libs/api/nest/ngshop/user/core/ports/*.md"]
+          }
+        },
+        "lint": {
+          "builder": "@nrwl/linter:eslint",
+          "options": {
+            "lintFilePatterns": ["libs/api/nest/ngshop/user/core/ports/**/*.ts"]
+          }
+        },
+        "test": {
+          "builder": "@nrwl/jest:jest",
+          "outputs": ["coverage/libs/api/nest/ngshop/user/core/ports"],
+          "options": {
+            "jestConfig": "libs/api/nest/ngshop/user/core/ports/jest.config.js",
+            "passWithNoTests": true
+          }
+        }
+      }
+    },
+    "api-nest-ngshop-user-infrastructure": {
+      "root": "libs/api/nest/ngshop/user/infrastructure",
+      "sourceRoot": "libs/api/nest/ngshop/user/infrastructure/src",
+      "projectType": "library",
+      "architect": {
+        "build": {
+          "builder": "@nrwl/node:package",
+          "outputs": ["{options.outputPath}"],
+          "options": {
+            "outputPath": "dist/libs/api/nest/ngshop/user/infrastructure",
+            "tsConfig": "libs/api/nest/ngshop/user/infrastructure/tsconfig.lib.json",
+            "packageJson": "libs/api/nest/ngshop/user/infrastructure/package.json",
+            "main": "libs/api/nest/ngshop/user/infrastructure/src/index.ts",
+            "assets": ["libs/api/nest/ngshop/user/infrastructure/*.md"]
+          }
+        },
+        "lint": {
+          "builder": "@nrwl/linter:eslint",
+          "options": {
+            "lintFilePatterns": [
+              "libs/api/nest/ngshop/user/infrastructure/**/*.ts"
+            ]
+          }
+        },
+        "test": {
+          "builder": "@nrwl/jest:jest",
+          "outputs": ["coverage/libs/api/nest/ngshop/user/infrastructure"],
+          "options": {
+            "jestConfig": "libs/api/nest/ngshop/user/infrastructure/jest.config.js",
+            "passWithNoTests": true
+          }
+        }
+      }
+    },
+    "api-nest-ngshop-user-shell": {
+      "root": "libs/api/nest/ngshop/user/shell",
+      "sourceRoot": "libs/api/nest/ngshop/user/shell/src",
+      "projectType": "library",
+      "architect": {
+        "build": {
+          "builder": "@nrwl/node:package",
+          "outputs": ["{options.outputPath}"],
+          "options": {
+            "outputPath": "dist/libs/api/nest/ngshop/user/shell",
+            "tsConfig": "libs/api/nest/ngshop/user/shell/tsconfig.lib.json",
+            "packageJson": "libs/api/nest/ngshop/user/shell/package.json",
+            "main": "libs/api/nest/ngshop/user/shell/src/index.ts",
+            "assets": ["libs/api/nest/ngshop/user/shell/*.md"]
+          }
+        },
+        "lint": {
+          "builder": "@nrwl/linter:eslint",
+          "options": {
+            "lintFilePatterns": ["libs/api/nest/ngshop/user/shell/**/*.ts"]
+          }
+        },
+        "test": {
+          "builder": "@nrwl/jest:jest",
+          "outputs": ["coverage/libs/api/nest/ngshop/user/shell"],
+          "options": {
+            "jestConfig": "libs/api/nest/ngshop/user/shell/jest.config.js",
+            "passWithNoTests": true
+          }
+        }
+      }
+    },
+    "api-nest-ngshop-user-ui-rest": {
+      "root": "libs/api/nest/ngshop/user/ui-rest",
+      "sourceRoot": "libs/api/nest/ngshop/user/ui-rest/src",
+      "projectType": "library",
+      "architect": {
+        "build": {
+          "builder": "@nrwl/node:package",
+          "outputs": ["{options.outputPath}"],
+          "options": {
+            "outputPath": "dist/libs/api/nest/ngshop/user/ui-rest",
+            "tsConfig": "libs/api/nest/ngshop/user/ui-rest/tsconfig.lib.json",
+            "packageJson": "libs/api/nest/ngshop/user/ui-rest/package.json",
+            "main": "libs/api/nest/ngshop/user/ui-rest/src/index.ts",
+            "assets": ["libs/api/nest/ngshop/user/ui-rest/*.md"]
+          }
+        },
+        "lint": {
+          "builder": "@nrwl/linter:eslint",
+          "options": {
+            "lintFilePatterns": ["libs/api/nest/ngshop/user/ui-rest/**/*.ts"]
+          }
+        },
+        "test": {
+          "builder": "@nrwl/jest:jest",
+          "outputs": ["coverage/libs/api/nest/ngshop/user/ui-rest"],
+          "options": {
+            "jestConfig": "libs/api/nest/ngshop/user/ui-rest/jest.config.js",
+            "passWithNoTests": true
+          }
+        }
+      }
+    },
     "api-nest-shared-common": {
       "root": "libs/api/nest/shared/common",
       "sourceRoot": "libs/api/nest/shared/common/src",
@@ -841,6 +1079,56 @@
           "outputs": ["coverage/apps/ngshop-api-nest"],
           "options": {
             "jestConfig": "apps/ngshop-api-nest/jest.config.js",
+            "passWithNoTests": true
+          }
+        }
+      }
+    },
+    "ngshop-api-nest-ddd": {
+      "root": "apps/ngshop-api-nest-ddd",
+      "sourceRoot": "apps/ngshop-api-nest-ddd/src",
+      "projectType": "application",
+      "architect": {
+        "build": {
+          "builder": "@nrwl/node:build",
+          "outputs": ["{options.outputPath}"],
+          "options": {
+            "outputPath": "dist/apps/ngshop-api-nest-ddd",
+            "main": "apps/ngshop-api-nest-ddd/src/main.ts",
+            "tsConfig": "apps/ngshop-api-nest-ddd/tsconfig.app.json",
+            "assets": ["apps/ngshop-api-nest-ddd/src/assets"]
+          },
+          "configurations": {
+            "production": {
+              "optimization": true,
+              "extractLicenses": true,
+              "inspect": false,
+              "fileReplacements": [
+                {
+                  "replace": "apps/ngshop-api-nest-ddd/src/environments/environment.ts",
+                  "with": "apps/ngshop-api-nest-ddd/src/environments/environment.prod.ts"
+                }
+              ]
+            }
+          }
+        },
+        "serve": {
+          "builder": "@nrwl/node:execute",
+          "options": {
+            "buildTarget": "ngshop-api-nest-ddd:build"
+          }
+        },
+        "lint": {
+          "builder": "@nrwl/linter:eslint",
+          "options": {
+            "lintFilePatterns": ["apps/ngshop-api-nest-ddd/**/*.ts"]
+          }
+        },
+        "test": {
+          "builder": "@nrwl/jest:jest",
+          "outputs": ["coverage/apps/ngshop-api-nest-ddd"],
+          "options": {
+            "jestConfig": "apps/ngshop-api-nest-ddd/jest.config.js",
             "passWithNoTests": true
           }
         }

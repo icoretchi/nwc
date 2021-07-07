@@ -26,6 +26,27 @@
       "tags": [],
       "implicitDependencies": ["admin"]
     },
+    "api-nest-ngshop-user-core-application-services": {
+      "tags": []
+    },
+    "api-nest-ngshop-user-core-domain": {
+      "tags": []
+    },
+    "api-nest-ngshop-user-core-domain-services": {
+      "tags": []
+    },
+    "api-nest-ngshop-user-core-ports": {
+      "tags": []
+    },
+    "api-nest-ngshop-user-infrastructure": {
+      "tags": []
+    },
+    "api-nest-ngshop-user-shell": {
+      "tags": []
+    },
+    "api-nest-ngshop-user-ui-rest": {
+      "tags": []
+    },
     "api-nest-shared-common": {
       "tags": []
     },
@@ -83,6 +104,9 @@
       "tags": []
     },
     "ngshop-api-nest": {
+      "tags": []
+    },
+    "ngshop-api-nest-ddd": {
       "tags": []
     },
     "ngshop-api-node": {

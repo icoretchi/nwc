@@ -35,6 +35,20 @@ export class Result<T> {
     return this._value;
   }
 
+  /**
+   * If success returns an instance of provided class.
+   */
+  public getResult(): T {
+    if (!this.isSuccess) {
+      console.log(this.error);
+      throw new Error(
+        'Can not get the value of an error result. Use errorValue instead.'
+      );
+    }
+
+    return this._value;
+  }
+
   public errorValue(): T {
     return this.error as T;
   }
