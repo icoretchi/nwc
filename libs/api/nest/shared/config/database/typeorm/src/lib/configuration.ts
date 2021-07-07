@@ -17,9 +17,7 @@ export const typeOrmConfig = registerAs('typeorm', () => ({
   logging: process.env.DATABASE_LOGGING === 'true',
   sincronize: process.env.DATABASE_SYNCHRONIZE === 'true',
   port: Number.parseInt(process.env.DATABASE_PORT, 10),
-  entities: getMetadataArgsStorage().tables.map((t) => t.target) || [
-    entitiesPath,
-  ],
+  entities: getMetadataArgsStorage().tables.map((t) => t.target),
   migrations: [migrationPath],
   migrationsRun: process.env.DATABASE_MIGRATIONS_RUN === 'false',
   seeds: ['src/**/migrations/seeds/*.seed.ts'],
@@ -33,7 +31,6 @@ export const typeOrmConfig = registerAs('typeorm', () => ({
   extra: {
     connectionLimit: parseInt(process.env.DATABASE_CONNECTION_LIMIT),
   },
-  WriteConcern: { w: 'majority', wtimeout: 2500 },
 }));
 
 export type TypeOrmConfig = ConfigType<typeof typeOrmConfig>;

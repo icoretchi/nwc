@@ -10,7 +10,7 @@ export interface SignUpUserUseCase {
 }
 
 export enum SignUpUserErrors {
-  UsernameOrEmailTaken = 'UsernameOrEmailTaken',
+  EmailTaken = 'EmailTaken',
 }
 
 export const SIGN_UP_USER_USE_CASE = Symbol('SIGN_UP_USER_USE_CASE');

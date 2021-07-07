@@ -1,11 +1,11 @@
 export abstract class AppUser {
-  protected constructor(readonly email: string, readonly id: number) {}
+  protected constructor(readonly email: string, readonly id: string) {}
 
   abstract get isAuthenticated(): boolean;
 }
 
 export class AuthenticatedUser extends AppUser {
-  constructor(email: string, id: number) {
+  constructor(email: string, id: string) {
     super(email, id);
   }
 
@@ -16,7 +16,7 @@ export class AuthenticatedUser extends AppUser {
 
 export class AnonymousUser extends AppUser {
   constructor() {
-    super('', null as number);
+    super('', null as string);
   }
 
   get isAuthenticated(): boolean {

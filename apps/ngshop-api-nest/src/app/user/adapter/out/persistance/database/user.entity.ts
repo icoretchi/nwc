@@ -1,16 +1,24 @@
-import { Column, Entity, PrimaryGeneratedColumn } from 'typeorm';
+import { Prop, Schema, SchemaFactory } from '@nestjs/mongoose';
+import { Document } from 'mongoose';
 
-@Entity('user')
+export type UserDocument = UserEntity & Document;
+@Schema({ autoCreate: true, timestamps: true, autoIndex: true })
 export class UserEntity {
-  @PrimaryGeneratedColumn()
-  id: number;
+  @Prop({ required: true, index: true, type: String })
+  name: string;
 
-  @Column({ unique: true })
-  username: string;
-
-  @Column({ unique: true })
+  @Prop({ required: true, index: true, type: String })
   email: string;
 
-  @Column()
-  password: string;
+  @Prop({ required: true })
+  passwordHash: string;
 }
+export const UserSchema = SchemaFactory.createForClass(UserEntity);
+
+UserSchema.virtual('id').get(function () {
+  return this._id.toHexString();
+});
+
+UserSchema.set('toJSON', {
+  virtuals: true,
+});

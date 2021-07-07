@@ -22,7 +22,7 @@ export class TypeOrmConfigService implements TypeOrmOptionsFactory {
       synchronize: this.configService.get<boolean>('typeorm.sincronize'),
       cli: this.configService.get<any>('typeorm.cli'),
       url: this.configService.get<any>('typeorm.url'),
-      autoLoadEntities: true,
+      // autoLoadEntities: true,
       useNewUrlParser: true,
       useUnifiedTopology: true,
       w: 'majority',

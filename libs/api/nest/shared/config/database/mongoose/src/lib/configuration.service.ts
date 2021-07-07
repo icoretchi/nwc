@@ -15,11 +15,11 @@ export class MongooseConfigService implements MongooseOptionsFactory {
       useUnifiedTopology: true,
       useCreateIndex: true,
       useFindAndModify: false,
-      host: this.configService.get<string>('mongoose.host'),
-      port: this.configService.get<string>('mongoose.port'),
-      user: this.configService.get<string>('mongoose.username'),
-      pass: this.configService.get<string>('mongoose.password'),
-      dbname: this.configService.get<string>('mongoose.database'),
+      // host: this.configService.get<string>('mongoose.host'),
+      // port: this.configService.get<string>('mongoose.port'),
+      // user: this.configService.get<string>('mongoose.username'),
+      // pass: this.configService.get<string>('mongoose.password'),
+      // dbname: this.configService.get<string>('mongoose.database'),
       uri: this.configService.get<string>('mongoose.uri'),
     };
   }

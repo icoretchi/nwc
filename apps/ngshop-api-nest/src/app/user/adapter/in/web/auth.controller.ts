@@ -68,20 +68,20 @@ export class AuthController {
   @Post('/sign-up')
   @ApiBadRequestResponse({ description: 'Invalid request body.' })
   @ApiUnprocessableEntityResponse({
-    description: 'Username or password taken.',
+    description: 'Email or password taken.',
   })
   @HttpCode(HttpStatus.OK)
   async signUp(@Body() request: SignUpRequestDto): Promise<AuthResponseDto> {
     return pipe(
       await this.signUpUseCase.signUp(
-        new SignUpUserCommand(request.username, request.email, request.password)
+        new SignUpUserCommand(request.name, request.email, request.password)
       ),
       E.fold(
         (error) => {
           switch (error) {
-            case SignUpUserErrors.UsernameOrEmailTaken:
+            case SignUpUserErrors.EmailTaken:
               throw new UnprocessableEntityException(
-                'Username or password is already taken'
+                'Email or password is already taken'
               );
           }
         },

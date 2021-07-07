@@ -2,18 +2,18 @@ import * as bcrypt from 'bcryptjs';
 
 export class User {
   constructor(
-    readonly id: number,
-    readonly username: string,
+    readonly id: string,
+    readonly name: string,
     readonly email: string,
-    readonly password: string
+    readonly passwordHash: string
   ) {}
 
   public async hashPassword(): Promise<User> {
     return new User(
       this.id,
-      this.username,
+      this.name,
       this.email,
-      await bcrypt.hash(this.password, 10)
+      await bcrypt.hash(this.passwordHash, 10)
     );
   }
 
@@ -22,6 +22,6 @@ export class User {
   }
 
   private async arePasswordsEqual(password: string): Promise<boolean> {
-    return bcrypt.compare(password, this.password);
+    return bcrypt.compare(password, this.passwordHash);
   }
 }

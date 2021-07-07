@@ -1,17 +1,24 @@
 import { Module } from '@nestjs/common';
-import { TypeOrmModule } from '@nestjs/typeorm';
+import { MongooseModule } from '@nestjs/mongoose';
 
+import { UserEntity, UserSchema } from './database/user.entity';
 import { UserRepository } from './database/user.repository';
 import { UserPersistenceCommandAdapter } from './user-persistance-command.adapter';
 import { UserPersistenceQueryAdapter } from './user-persistence-query.adapter';
 
 @Module({
-  imports: [TypeOrmModule.forFeature([UserRepository])],
-  providers: [UserPersistenceQueryAdapter, UserPersistenceCommandAdapter],
+  imports: [
+    MongooseModule.forFeature([{ name: UserEntity.name, schema: UserSchema }]),
+  ],
+  providers: [
+    UserRepository,
+    UserPersistenceQueryAdapter,
+    UserPersistenceCommandAdapter,
+  ],
   exports: [
     UserPersistenceQueryAdapter,
     UserPersistenceCommandAdapter,
-    TypeOrmModule,
+    MongooseModule,
   ],
 })
 export class UserPersistenceModule {}

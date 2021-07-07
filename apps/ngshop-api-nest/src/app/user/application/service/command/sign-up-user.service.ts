@@ -13,9 +13,9 @@ import {
   SaveUserPort,
 } from '../../port/out/command/save-user.port';
 import {
-  EXISTS_BY_USERNAME_OR_EMAIL_PORT,
-  ExistsByUsernameOrEmailPort,
-} from '../../port/out/query/exists-by-username-or-email.port';
+  EXISTS_BY_EMAIL_PORT,
+  ExistsByEmailPort,
+} from '../../port/out/query/exists-by-email.port';
 import {
   TOKEN_PROVIDER_PORT,
   TokenProviderPort,
@@ -26,8 +26,8 @@ export class SignUpUserService implements SignUpUserUseCase {
   constructor(
     @Inject(SAVE_USER_PORT)
     private readonly userSaver: SaveUserPort,
-    @Inject(EXISTS_BY_USERNAME_OR_EMAIL_PORT)
-    private readonly existsUser: ExistsByUsernameOrEmailPort,
+    @Inject(EXISTS_BY_EMAIL_PORT)
+    private readonly existsUser: ExistsByEmailPort,
     @Inject(TOKEN_PROVIDER_PORT)
     private readonly tokenProvider: TokenProviderPort
   ) {}
@@ -35,26 +35,16 @@ export class SignUpUserService implements SignUpUserUseCase {
   public async signUp(
     command: SignUpUserCommand
   ): Promise<E.Either<SignUpUserErrors, { user: User; token: string }>> {
-    if (
-      await this.existsUser.existsByUsernameOrEmail(
-        command.username,
-        command.email
-      )
-    ) {
-      return E.left(SignUpUserErrors.UsernameOrEmailTaken);
+    if (await this.existsUser.existsByEmail(command.email)) {
+      return E.left(SignUpUserErrors.EmailTaken);
     }
-    const user = new User(
-      null,
-      command.username,
-      command.email,
-      command.password
-    );
+    const user = new User(null, command.name, command.email, command.password);
 
     const savedUser = await this.userSaver.save(await user.hashPassword());
 
     return E.right({
       user: savedUser,
-      token: this.tokenProvider.signToken(savedUser.id, savedUser.username),
+      token: this.tokenProvider.signToken(savedUser.id, savedUser.email),
     });
   }
 }

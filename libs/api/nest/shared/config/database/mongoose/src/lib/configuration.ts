@@ -1,10 +1,12 @@
-import { registerAs } from '@nestjs/config';
+import { ConfigType, registerAs } from '@nestjs/config';
 
-export default registerAs('mongoose', () => ({
-  host: process.env.MONGO_HOST || '127.0.0.1',
-  port: process.env.MONGO_PORT || 27017,
-  username: process.env.MONGO_USERNAME,
-  password: process.env.MONGO_PASSWORD,
-  database: process.env.MONGO_DATABASE,
-  uri: process.env.MONGO_URI,
+export const mongooseConfig = registerAs('mongoose', () => ({
+  host: process.env.DATABASE_HOST || '127.0.0.1',
+  port: process.env.DATABASE_PORT || 27017,
+  username: process.env.DATABASE_USERNAME,
+  password: process.env.DATABASE_PASSWORD,
+  database: process.env.DATABASE_DATABASE,
+  uri: process.env.DATABASE_URL,
 }));
+
+export type MongooseConfig = ConfigType<typeof mongooseConfig>;

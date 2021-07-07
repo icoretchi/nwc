@@ -1,18 +1,34 @@
-import { EntityRepository, Repository } from 'typeorm';
+import { Injectable } from '@nestjs/common';
+import { InjectModel } from '@nestjs/mongoose';
+import { Model } from 'mongoose';
 
-import { UserEntity } from './user.entity';
+import { User } from '../../../../domain/model/user.domain-model';
+import { UserDocument, UserEntity } from './user.entity';
 
-@EntityRepository(UserEntity)
-export class UserRepository extends Repository<UserEntity> {
-  public async existsByEmailOrUsername(
-    email: string,
-    username: string
-  ): Promise<boolean> {
-    const count = await this.createQueryBuilder()
-      .where('email = :email', { email })
-      .orWhere('username = :username', { username })
-      .getCount();
+@Injectable()
+export class UserRepository {
+  constructor(
+    @InjectModel(UserEntity.name) private userModel: Model<UserDocument>
+  ) {}
 
-    return count > 0;
+  async getUserByEmail(email: string): Promise<UserEntity> {
+    return await this.userModel.findOne({ email }).exec();
+  }
+
+  async getUserByName(name: string): Promise<UserEntity> {
+    return await this.userModel.findOne({ name }).exec();
+  }
+
+  public async existsByEmail(email: string): Promise<boolean> {
+    return await this.userModel.exists({ email });
+  }
+
+  async create(user: User): Promise<UserEntity> {
+    return await this.userModel.create(user);
+  }
+
+  async save(target: User): Promise<void> {
+    const user = new this.userModel(target);
+    await user.save();
   }
 }

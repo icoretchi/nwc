@@ -5,6 +5,7 @@ import { AuthConfigModule } from '@nwc/api/nest/shared/config/auth';
 import { JwtStrategy } from './adapter/in/auth/strategies/jwt.strategy';
 import { AuthController } from './adapter/in/web/auth.controller';
 import { UserController } from './adapter/in/web/user.controller';
+import { UserRepository } from './adapter/out/persistance/database/user.repository';
 import { UserPersistenceCommandAdapter } from './adapter/out/persistance/user-persistance-command.adapter';
 import { UserPersistenceQueryAdapter } from './adapter/out/persistance/user-persistence-query.adapter';
 import { UserPersistenceModule } from './adapter/out/persistance/user-persistence.module';
@@ -13,16 +14,16 @@ import { TokenProviderModule } from './adapter/out/token/token-provider.module';
 import { LOGIN_USER_USE_CASE } from './application/port/in/command/login-user.use-case';
 import { SIGN_UP_USER_USE_CASE } from './application/port/in/command/sign-up-user.use-case';
 import { FIND_USER_BY_EMAIL_USE_CASE } from './application/port/in/query/find-user-by-email-use.case';
-import { FIND_USER_BY_USERNAME_USE_CASE } from './application/port/in/query/find-user-by-username-use.case';
+import { FIND_USER_BY_NAME_USE_CASE } from './application/port/in/query/find-user-by-name-use.case';
 import { SAVE_USER_PORT } from './application/port/out/command/save-user.port';
-import { EXISTS_BY_USERNAME_OR_EMAIL_PORT } from './application/port/out/query/exists-by-username-or-email.port';
+import { EXISTS_BY_EMAIL_PORT } from './application/port/out/query/exists-by-email.port';
 import { GET_USER_BY_EMAIL_PORT } from './application/port/out/query/get-user-by-email.port';
-import { GET_USER_BY_USERNAME_PORT } from './application/port/out/query/get-user-by-username.port';
+import { GET_USER_BY_NAME_PORT } from './application/port/out/query/get-user-by-name.port';
 import { TOKEN_PROVIDER_PORT } from './application/port/out/query/token-provider.port';
 import { LoginUserService } from './application/service/command/login-user.service';
 import { SignUpUserService } from './application/service/command/sign-up-user.service';
 import { FindUserByEmailService } from './application/service/query/find-user-by-email.service';
-import { FindUserByUsernameService } from './application/service/query/find-user-by-username.service';
+import { FindUserByNameService } from './application/service/query/find-user-by-name.service';
 
 @Module({
   imports: [
@@ -32,6 +33,10 @@ import { FindUserByUsernameService } from './application/service/query/find-user
     AuthConfigModule,
   ],
   providers: [
+    {
+      provide: 'UserRepository',
+      useClass: UserRepository,
+    },
     {
       provide: SIGN_UP_USER_USE_CASE,
       useClass: SignUpUserService,
@@ -45,11 +50,11 @@ import { FindUserByUsernameService } from './application/service/query/find-user
       useClass: LoginUserService,
     },
     {
-      provide: EXISTS_BY_USERNAME_OR_EMAIL_PORT,
+      provide: EXISTS_BY_EMAIL_PORT,
       useClass: UserPersistenceQueryAdapter,
     },
     {
-      provide: GET_USER_BY_USERNAME_PORT,
+      provide: GET_USER_BY_NAME_PORT,
       useClass: UserPersistenceQueryAdapter,
     },
     {
@@ -61,8 +66,8 @@ import { FindUserByUsernameService } from './application/service/query/find-user
       useClass: TokenProviderAdapter,
     },
     {
-      provide: FIND_USER_BY_USERNAME_USE_CASE,
-      useClass: FindUserByUsernameService,
+      provide: FIND_USER_BY_NAME_USE_CASE,
+      useClass: FindUserByNameService,
     },
     {
       provide: FIND_USER_BY_EMAIL_USE_CASE,

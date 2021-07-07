@@ -7,7 +7,7 @@ import { TokenProviderPort } from '../../../application/port/out/query/token-pro
 export class TokenProviderAdapter implements TokenProviderPort {
   constructor(private readonly jwtService: JwtService) {}
 
-  signToken(id: number, email: string): string {
+  signToken(id: string, email: string): string {
     return this.jwtService.sign({ id, email });
   }
 }

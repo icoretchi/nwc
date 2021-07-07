@@ -13,7 +13,7 @@ async function bootstrap() {
   app.setGlobalPrefix(globalPrefix);
 
   const options = new DocumentBuilder()
-    .setTitle('Movies')
+    .setTitle('ngShop')
     .setDescription('ngShop REST API')
     .setVersion('1.0')
     .build();

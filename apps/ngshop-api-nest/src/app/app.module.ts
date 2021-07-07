@@ -1,7 +1,6 @@
 import { Module, ValidationPipe } from '@nestjs/common';
-import { ConfigModule } from '@nestjs/config';
 import { APP_FILTER, APP_GUARD, APP_INTERCEPTOR, APP_PIPE } from '@nestjs/core';
-import { TypeOrmModule } from '@nestjs/typeorm';
+import { MongooseModule } from '@nestjs/mongoose';
 import { SelfValidationErrorFilter } from '@nwc/api/nest/shared/common';
 import {
   ExcludePropertiesClassSerializerInterceptor,
@@ -12,9 +11,10 @@ import {
 import { AppConfigModule } from '@nwc/api/nest/shared/config/app';
 import { AuthConfigModule } from '@nwc/api/nest/shared/config/auth';
 import {
-  TypeOrmConfigModule,
-  TypeOrmConfigService,
-} from '@nwc/api/nest/shared/config/database/typeorm';
+  MongooseConfigModule,
+  MongooseConfigService,
+} from '@nwc/api/nest/shared/config/database/mongoose';
+import { TypeOrmConfigModule } from '@nwc/api/nest/shared/config/database/typeorm';
 
 import { UserModule } from './user/user.module';
 
@@ -23,10 +23,14 @@ import { UserModule } from './user/user.module';
     AppConfigModule,
     AuthConfigModule,
     TypeOrmConfigModule,
-    TypeOrmModule.forRootAsync({
-      imports: [TypeOrmConfigModule],
-      useClass: TypeOrmConfigService,
+    MongooseConfigModule,
+    MongooseModule.forRootAsync({
+      useClass: MongooseConfigService,
     }),
+    // TypeOrmModule.forRootAsync({
+    //   imports: [TypeOrmConfigModule],
+    //   useClass: TypeOrmConfigService,
+    // }),
     UserModule,
   ],
   controllers: [],

@@ -1,5 +1,5 @@
 export interface TokenProviderPort {
-  signToken(id: number, username: string): string;
+  signToken(id: string, email: string): string;
 }
 
 export const TOKEN_PROVIDER_PORT = Symbol('TOKEN_PROVIDER_PORT');

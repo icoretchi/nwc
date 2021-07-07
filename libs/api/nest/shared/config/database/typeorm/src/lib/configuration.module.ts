@@ -10,7 +10,7 @@ import { validationSchema } from './validation-scheme';
     ConfigModule.forRoot({
       isGlobal: true,
       load: [typeOrmConfig],
-      // validationSchema: validationSchema,
+      validationSchema: validationSchema,
     }),
   ],
   providers: [ConfigService, TypeOrmConfigService],
