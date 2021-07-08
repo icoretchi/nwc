@@ -16,14 +16,11 @@
     "baseUrl": ".",
     "paths": {
       "@env/*": ["environments/*"],
-      "@nwc/api/nest/ngshop/user/core/application-services": [
-        "libs/api/nest/ngshop/user/core/application-services/src/index.ts"
+      "@nwc/api/nest/ngshop/user/core/application": [
+        "libs/api/nest/ngshop/user/core/application/src/index.ts"
       ],
       "@nwc/api/nest/ngshop/user/core/domain": [
         "libs/api/nest/ngshop/user/core/domain/src/index.ts"
-      ],
-      "@nwc/api/nest/ngshop/user/core/domain-services": [
-        "libs/api/nest/ngshop/user/core/domain-services/src/index.ts"
       ],
       "@nwc/api/nest/ngshop/user/core/ports": [
         "libs/api/nest/ngshop/user/core/ports/src/index.ts"

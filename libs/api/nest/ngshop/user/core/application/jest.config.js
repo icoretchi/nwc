@@ -1,5 +1,5 @@
 module.exports = {
-  displayName: 'api-nest-ngshop-user-core-application-services',
+  displayName: 'api-nest-ngshop-user-core-application',
   preset: '../../../../../../../jest.preset.js',
   globals: {
     'ts-jest': {
@@ -12,5 +12,5 @@ module.exports = {
   },
   moduleFileExtensions: ['ts', 'tsx', 'js', 'jsx'],
   coverageDirectory:
-    '../../../../../../../coverage/libs/api/nest/ngshop/user/core/application-services',
+    '../../../../../../../coverage/libs/api/nest/ngshop/user/core/application',
 };

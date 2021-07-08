@@ -7,7 +7,7 @@ describe('user.aggregate', () => {
   it('should create a valid user', () => {
     const user = UserAggregate.create({
       email: UserEmail.create('valid_mail@domain.com').getResult(),
-      name: UserName.create({ name: 'valid_name' }).getResult(),
+      name: UserName.create('valid_name').getResult(),
       password: UserPassword.create('valid_password').getResult(),
     });
 
@@ -17,7 +17,7 @@ describe('user.aggregate', () => {
   it('should get valid values', () => {
     const user = UserAggregate.create({
       email: UserEmail.create('valid_mail@domain.com').getResult(),
-      name: UserName.create({ name: 'valid_name' }).getResult(),
+      name: UserName.create('valid_name').getResult(),
       password: UserPassword.create('valid_password').getResult(),
     });
 
@@ -33,7 +33,7 @@ describe('user.aggregate', () => {
     const user = UserAggregate.create(
       {
         email: UserEmail.create('valid_mail@domain.com').getResult(),
-        name: UserName.create({ name: 'valid_name' }).getResult(),
+        name: UserName.create('valid_name').getResult(),
         password: UserPassword.create('valid_password').getResult(),
       },
       new UniqueEntityID('valid_id')

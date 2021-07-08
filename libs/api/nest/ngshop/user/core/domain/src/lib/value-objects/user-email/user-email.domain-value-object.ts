@@ -29,4 +29,18 @@ export class UserEmail extends ValueObject<UserEmailProps> {
       })
     );
   }
+
+  public static fromString(email: string): Result<UserEmail> {
+    const isValidEmail = isEmail(email);
+
+    if (!isValidEmail) {
+      return Result.fail<UserEmail>(ErrorMessages.INVALID_EMAIL);
+    }
+
+    return Result.ok<UserEmail>(
+      new UserEmail({
+        value: email.toLocaleLowerCase(),
+      })
+    );
+  }
 }

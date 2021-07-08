@@ -1,8 +1,13 @@
+import { AggregateRoot as Aggregate } from '@nestjs/cqrs';
+import { mix } from 'ts-mixer';
+
 import { IDomainEvent } from '../domain-events/domain-event.interface';
 import { DomainEvents } from '../domain-events/domain-events';
 import { Entity } from './entity.base';
 import { UniqueEntityID } from './unique-entity-id.base';
 
+export interface AggregateRoot<T> extends Entity<T>, Aggregate {}
+@mix(Aggregate)
 export abstract class AggregateRoot<T> extends Entity<T> {
   private _domainEvents: IDomainEvent[] = [];
 

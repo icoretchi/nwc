@@ -26,13 +26,10 @@
       "tags": [],
       "implicitDependencies": ["admin"]
     },
-    "api-nest-ngshop-user-core-application-services": {
+    "api-nest-ngshop-user-core-application": {
       "tags": []
     },
     "api-nest-ngshop-user-core-domain": {
-      "tags": []
-    },
-    "api-nest-ngshop-user-core-domain-services": {
       "tags": []
     },
     "api-nest-ngshop-user-core-ports": {
