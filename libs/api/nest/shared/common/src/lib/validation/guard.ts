@@ -116,6 +116,19 @@ export class Guard {
     }
   }
 
+  public static againstInvalidCharacters(
+    argument: any,
+    argumentName: string
+  ): IGuardResult {
+    if (!/^[a-zA-Z0-9ñÑ]+$/.test(argument)) {
+      return {
+        succeeded: false,
+        message: `Invalid ${argumentName} characters`,
+      };
+    }
+    return { succeeded: true };
+  }
+
   public static againstNullOrUndefinedBulk(
     args: GuardArgumentCollection
   ): IGuardResult {

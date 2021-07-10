@@ -19,34 +19,33 @@ export class UserName extends ValueObject<UserNameProps> {
   }
 
   public static fromString(name: string): Result<UserName> {
-    const usernameResult = Guard.againstNullOrUndefined(name, 'name');
-    if (!usernameResult.succeeded) {
-      return Result.fail<UserName>(usernameResult.message);
-    }
-
-    if (!/^[a-zA-Z0-9ñÑ]+$/.test(name)) {
-      throw new Error('Invalid username characters');
-    }
-
-    return Result.ok<UserName>(new UserName({ value: name }));
+    return UserName.create({ value: name });
   }
 
-  public static create(name: string): Result<UserName> {
-    const usernameResult = Guard.againstNullOrUndefined(name, 'name');
+  public static create(props: UserNameProps): Result<UserName> {
+    const usernameResult = Guard.againstNullOrUndefined(props.value, 'name');
     if (!usernameResult.succeeded) {
       return Result.fail<UserName>(usernameResult.message);
     }
 
-    const minLengthResult = Guard.againstAtLeast(this.minLength, name);
+    const minLengthResult = Guard.againstAtLeast(this.minLength, props.value);
     if (!minLengthResult.succeeded) {
       return Result.fail<UserName>(minLengthResult.message);
     }
 
-    const maxLengthResult = Guard.againstAtMost(this.maxLength, name);
+    const maxLengthResult = Guard.againstAtMost(this.maxLength, props.value);
     if (!maxLengthResult.succeeded) {
       return Result.fail<UserName>(minLengthResult.message);
     }
 
-    return Result.ok<UserName>(new UserName({ value: name }));
+    const invalidCharachtersResult = Guard.againstInvalidCharacters(
+      props.value,
+      'name'
+    );
+    if (!invalidCharachtersResult.succeeded) {
+      return Result.fail<UserName>(invalidCharachtersResult.message);
+    }
+
+    return Result.ok<UserName>(new UserName({ value: props.value }));
   }
 }

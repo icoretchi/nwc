@@ -1,1 +1,4 @@
-export * from './lib/api-nest-ngshop-user-core-ports.module';
+export * from './lib/ports.module';
+export * from './lib/in/commands';
+export * from './lib/out/persistence';
+export * from './lib/in/queries';

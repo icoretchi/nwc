@@ -1,6 +1,6 @@
 module.exports = {
-  displayName: 'api-nest-ngshop-user-infrastructure',
-  preset: '../../../../../../jest.preset.js',
+  displayName: 'api-nest-ngshop-user-infrastructure-orms-mongoose',
+  preset: '../../../../../../../../jest.preset.js',
   globals: {
     'ts-jest': {
       tsconfig: '<rootDir>/tsconfig.spec.json',
@@ -12,5 +12,5 @@ module.exports = {
   },
   moduleFileExtensions: ['ts', 'tsx', 'js', 'jsx'],
   coverageDirectory:
-    '../../../../../../coverage/libs/api/nest/ngshop/user/infrastructure',
+    '../../../../../../../../coverage/libs/api/nest/ngshop/user/infrastructure/orms/mongoose',
 };

@@ -16,8 +16,8 @@ export class UserEmail extends ValueObject<UserEmailProps> {
     return this.props.value;
   }
 
-  public static create(email: string): Result<UserEmail> {
-    const isValidEmail = isEmail(email);
+  public static create(props: UserEmailProps): Result<UserEmail> {
+    const isValidEmail = isEmail(props.value);
 
     if (!isValidEmail) {
       return Result.fail<UserEmail>(ErrorMessages.INVALID_EMAIL);
@@ -25,22 +25,12 @@ export class UserEmail extends ValueObject<UserEmailProps> {
 
     return Result.ok<UserEmail>(
       new UserEmail({
-        value: email.toLocaleLowerCase(),
+        value: props.value.toLocaleLowerCase(),
       })
     );
   }
 
   public static fromString(email: string): Result<UserEmail> {
-    const isValidEmail = isEmail(email);
-
-    if (!isValidEmail) {
-      return Result.fail<UserEmail>(ErrorMessages.INVALID_EMAIL);
-    }
-
-    return Result.ok<UserEmail>(
-      new UserEmail({
-        value: email.toLocaleLowerCase(),
-      })
-    );
+    return UserEmail.create({ value: email });
   }
 }

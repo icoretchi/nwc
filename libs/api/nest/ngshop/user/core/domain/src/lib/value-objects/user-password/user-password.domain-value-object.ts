@@ -3,6 +3,7 @@ export const PASSWORD_MAX_LENGTH = 20;
 
 import { Result, ValueObject } from '@nwc/api/nest/shared/common';
 import { compareSync, genSaltSync, hashSync } from 'bcryptjs';
+import * as bcrypt from 'bcryptjs';
 
 import { ErrorMessages } from '../../error-messages/messages';
 import { PasswordInterface } from './interfaces/password.interface';
@@ -35,11 +36,7 @@ export class UserPassword
     this.props.value = hashSync(this.props.value, salt);
     this.isEncrypted = true;
   }
-  /**
-   *
-   * @param plainText password not encrypted as string
-   * @returns `true` if match and `false` else not
-   */
+
   async comparePasswords(plainText: string): Promise<boolean> {
     if (this.isEncrypted) {
       return compareSync(plainText, this.props.value);
@@ -47,13 +44,28 @@ export class UserPassword
     return plainText === this.props.value;
   }
 
-  public static create(password: string): Result<UserPassword> {
-    const isEncrypt = isEncryptPass.test(password);
+  async hashPassword(password: string): Promise<string> {
+    const salt = genSaltSync();
+    password = hashSync(password, salt);
+    this.isEncrypted = true;
+    return password;
+  }
+
+  async getHashedValue(): Promise<string> {
+    if (this.isAlreadyEncrypted) {
+      return this.props.value;
+    } else {
+      return this.hashPassword(this.props.value);
+    }
+  }
+
+  public static create(props: UserPasswordProps): Result<UserPassword> {
+    const isEncrypt = isEncryptPass.test(props.value);
 
     if (!isEncrypt) {
       const isValidPasswordLength =
-        password.length >= PASSWORD_MIN_LENGTH &&
-        password.length <= PASSWORD_MAX_LENGTH;
+        props.value.length >= PASSWORD_MIN_LENGTH &&
+        props.value.length <= PASSWORD_MAX_LENGTH;
 
       if (!isValidPasswordLength) {
         return Result.fail<UserPassword>(ErrorMessages.INVALID_PASSWORD_LENGTH);
@@ -61,7 +73,11 @@ export class UserPassword
     }
 
     return Result.ok<UserPassword>(
-      new UserPassword({ value: password }, isEncrypt)
+      new UserPassword({ value: props.value }, isEncrypt)
     );
+  }
+
+  public static fromString(password: string): Result<UserPassword> {
+    return UserPassword.create({ value: password });
   }
 }

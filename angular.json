@@ -252,35 +252,39 @@
         }
       }
     },
-    "api-nest-ngshop-user-infrastructure": {
-      "root": "libs/api/nest/ngshop/user/infrastructure",
-      "sourceRoot": "libs/api/nest/ngshop/user/infrastructure/src",
+    "api-nest-ngshop-user-infrastructure-orms-mongoose": {
+      "root": "libs/api/nest/ngshop/user/infrastructure/orms/mongoose",
+      "sourceRoot": "libs/api/nest/ngshop/user/infrastructure/orms/mongoose/src",
       "projectType": "library",
       "architect": {
         "build": {
           "builder": "@nrwl/node:package",
           "outputs": ["{options.outputPath}"],
           "options": {
-            "outputPath": "dist/libs/api/nest/ngshop/user/infrastructure",
-            "tsConfig": "libs/api/nest/ngshop/user/infrastructure/tsconfig.lib.json",
-            "packageJson": "libs/api/nest/ngshop/user/infrastructure/package.json",
-            "main": "libs/api/nest/ngshop/user/infrastructure/src/index.ts",
-            "assets": ["libs/api/nest/ngshop/user/infrastructure/*.md"]
+            "outputPath": "dist/libs/api/nest/ngshop/user/infrastructure/orms/mongoose",
+            "tsConfig": "libs/api/nest/ngshop/user/infrastructure/orms/mongoose/tsconfig.lib.json",
+            "packageJson": "libs/api/nest/ngshop/user/infrastructure/orms/mongoose/package.json",
+            "main": "libs/api/nest/ngshop/user/infrastructure/orms/mongoose/src/index.ts",
+            "assets": [
+              "libs/api/nest/ngshop/user/infrastructure/orms/mongoose/*.md"
+            ]
           }
         },
         "lint": {
           "builder": "@nrwl/linter:eslint",
           "options": {
             "lintFilePatterns": [
-              "libs/api/nest/ngshop/user/infrastructure/**/*.ts"
+              "libs/api/nest/ngshop/user/infrastructure/orms/mongoose/**/*.ts"
             ]
           }
         },
         "test": {
           "builder": "@nrwl/jest:jest",
-          "outputs": ["coverage/libs/api/nest/ngshop/user/infrastructure"],
+          "outputs": [
+            "coverage/libs/api/nest/ngshop/user/infrastructure/orms/mongoose"
+          ],
           "options": {
-            "jestConfig": "libs/api/nest/ngshop/user/infrastructure/jest.config.js",
+            "jestConfig": "libs/api/nest/ngshop/user/infrastructure/orms/mongoose/jest.config.js",
             "passWithNoTests": true
           }
         }

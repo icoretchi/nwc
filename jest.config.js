@@ -29,9 +29,9 @@ module.exports = {
     '<rootDir>/apps/ngshop-api-nest-ddd',
     '<rootDir>/libs/api/nest/ngshop/user/core/domain',
     '<rootDir>/libs/api/nest/ngshop/user/core/ports',
-    '<rootDir>/libs/api/nest/ngshop/user/infrastructure',
     '<rootDir>/libs/api/nest/ngshop/user/ui-rest',
     '<rootDir>/libs/api/nest/ngshop/user/shell',
     '<rootDir>/libs/api/nest/ngshop/user/core/application',
+    '<rootDir>/libs/api/nest/ngshop/user/infrastructure/orms/mongoose',
   ],
 };
