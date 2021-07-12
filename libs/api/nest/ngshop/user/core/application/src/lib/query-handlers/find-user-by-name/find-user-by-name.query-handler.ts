@@ -10,11 +10,12 @@ import {
   AppError,
   Either,
   Result,
+  UnexpectedError,
   left,
   right,
 } from '@nwc/api/nest/shared/common';
 
-import { GetUserByNameErrors } from './get-user-by-name.errors';
+import { UserNotFoundByNameError } from '../../exceptions/user-not-found-by-name';
 
 type Response = Either<AppError.UnexpectedError, Result<UserAggregate>>;
 
@@ -27,18 +28,17 @@ export class FindUserByNameQueryHandler
   ) {}
 
   async execute(query: FindUserByNameQuery): Promise<Response> {
-    const user = await this.users.getUserByName(query.username);
-    const userFound = !!user === true;
+    try {
+      const user = await this.users.getUserByName(query.username);
+      const userFound = !!user === true;
 
-    if (!userFound) {
-      return left(
-        new GetUserByNameErrors.UserNotFoundError(query.username.value)
-      ) as Response;
+      if (!userFound) {
+        return left(UserNotFoundByNameError.with(query.username)) as Response;
+      }
+
+      return right(Result.ok<UserAggregate>(user)) as Response;
+    } catch (err) {
+      return left(UnexpectedError.with(err)) as Response;
     }
-
-    return right(Result.ok<UserAggregate>(user));
-  }
-  catch(err) {
-    return left(new AppError.UnexpectedError(err));
   }
 }

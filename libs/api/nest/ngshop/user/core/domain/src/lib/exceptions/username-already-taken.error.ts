@@ -1,3 +1,5 @@
+import { Result } from '@nwc/api/nest/shared/common';
+
 import { UserName } from '../value-objects';
 
 export class UsernameAlreadyTakenError extends Error {

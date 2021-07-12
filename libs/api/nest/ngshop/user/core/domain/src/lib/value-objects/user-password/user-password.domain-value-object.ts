@@ -1,7 +1,7 @@
 export const PASSWORD_MIN_LENGTH = 3;
 export const PASSWORD_MAX_LENGTH = 20;
 
-import { Result, ValueObject } from '@nwc/api/nest/shared/common';
+import { Guard, Result, ValueObject } from '@nwc/api/nest/shared/common';
 import { compareSync, genSaltSync, hashSync } from 'bcryptjs';
 import * as bcrypt from 'bcryptjs';
 
@@ -77,7 +77,23 @@ export class UserPassword
     );
   }
 
-  public static fromString(password: string): Result<UserPassword> {
-    return UserPassword.create({ value: password });
+  public static fromString(password: string): UserPassword {
+    const passwordResult = Guard.againstNullOrUndefined(password, 'password');
+    if (!passwordResult.succeeded) {
+      throw new Error(passwordResult.message);
+    }
+    const isEncrypt = isEncryptPass.test(password);
+
+    if (!isEncrypt) {
+      const isValidPasswordLength =
+        password.length >= PASSWORD_MIN_LENGTH &&
+        password.length <= PASSWORD_MAX_LENGTH;
+
+      if (!isValidPasswordLength) {
+        throw new Error(ErrorMessages.INVALID_PASSWORD_LENGTH);
+      }
+    }
+
+    return new UserPassword({ value: password }, isEncrypt);
   }
 }

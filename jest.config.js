@@ -33,5 +33,6 @@ module.exports = {
     '<rootDir>/libs/api/nest/ngshop/user/shell',
     '<rootDir>/libs/api/nest/ngshop/user/core/application',
     '<rootDir>/libs/api/nest/ngshop/user/infrastructure/orms/mongoose',
+    '<rootDir>/libs/api/nest/ngshop/user/infrastructure/auth',
   ],
 };

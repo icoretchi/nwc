@@ -1,11 +1,10 @@
+import { UserId } from '@nwc/api/nest/ngshop/user/core/domain';
 import { Result } from '@nwc/api/nest/shared/common';
-
-import { UserId } from '../value-objects';
 
 export class UserIdAlreadyTakenError extends Result<Error> {
   constructor(userId: string) {
     super(false, {
-      message: `User id ${userId} already take`,
+      message: `User id ${userId} already taken`,
     } as Error);
   }
 

@@ -18,10 +18,6 @@ export class UserName extends ValueObject<UserNameProps> {
     super(props);
   }
 
-  public static fromString(name: string): Result<UserName> {
-    return UserName.create({ value: name });
-  }
-
   public static create(props: UserNameProps): Result<UserName> {
     const usernameResult = Guard.againstNullOrUndefined(props.value, 'name');
     if (!usernameResult.succeeded) {
@@ -47,5 +43,32 @@ export class UserName extends ValueObject<UserNameProps> {
     }
 
     return Result.ok<UserName>(new UserName({ value: props.value }));
+  }
+
+  public static fromString(username: string): UserName {
+    const usernameResult = Guard.againstNullOrUndefined(username, 'name');
+    if (!usernameResult.succeeded) {
+      throw new Error(usernameResult.message);
+    }
+
+    const minLengthResult = Guard.againstAtLeast(this.minLength, username);
+    if (!minLengthResult.succeeded) {
+      throw new Error(minLengthResult.message);
+    }
+
+    const maxLengthResult = Guard.againstAtMost(this.maxLength, username);
+    if (!maxLengthResult.succeeded) {
+      throw new Error(maxLengthResult.message);
+    }
+
+    const invalidCharachtersResult = Guard.againstInvalidCharacters(
+      username,
+      'name'
+    );
+    if (!invalidCharachtersResult.succeeded) {
+      throw new Error(invalidCharachtersResult.message);
+    }
+
+    return new UserName({ value: username });
   }
 }

@@ -252,6 +252,40 @@
         }
       }
     },
+    "api-nest-ngshop-user-infrastructure-auth": {
+      "root": "libs/api/nest/ngshop/user/infrastructure/auth",
+      "sourceRoot": "libs/api/nest/ngshop/user/infrastructure/auth/src",
+      "projectType": "library",
+      "architect": {
+        "build": {
+          "builder": "@nrwl/node:package",
+          "outputs": ["{options.outputPath}"],
+          "options": {
+            "outputPath": "dist/libs/api/nest/ngshop/user/infrastructure/auth",
+            "tsConfig": "libs/api/nest/ngshop/user/infrastructure/auth/tsconfig.lib.json",
+            "packageJson": "libs/api/nest/ngshop/user/infrastructure/auth/package.json",
+            "main": "libs/api/nest/ngshop/user/infrastructure/auth/src/index.ts",
+            "assets": ["libs/api/nest/ngshop/user/infrastructure/auth/*.md"]
+          }
+        },
+        "lint": {
+          "builder": "@nrwl/linter:eslint",
+          "options": {
+            "lintFilePatterns": [
+              "libs/api/nest/ngshop/user/infrastructure/auth/**/*.ts"
+            ]
+          }
+        },
+        "test": {
+          "builder": "@nrwl/jest:jest",
+          "outputs": ["coverage/libs/api/nest/ngshop/user/infrastructure/auth"],
+          "options": {
+            "jestConfig": "libs/api/nest/ngshop/user/infrastructure/auth/jest.config.js",
+            "passWithNoTests": true
+          }
+        }
+      }
+    },
     "api-nest-ngshop-user-infrastructure-orms-mongoose": {
       "root": "libs/api/nest/ngshop/user/infrastructure/orms/mongoose",
       "sourceRoot": "libs/api/nest/ngshop/user/infrastructure/orms/mongoose/src",

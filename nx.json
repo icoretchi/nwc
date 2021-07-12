@@ -35,6 +35,9 @@
     "api-nest-ngshop-user-core-ports": {
       "tags": []
     },
+    "api-nest-ngshop-user-infrastructure-auth": {
+      "tags": []
+    },
     "api-nest-ngshop-user-infrastructure-orms-mongoose": {
       "tags": []
     },

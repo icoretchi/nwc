@@ -2,6 +2,7 @@ import { Inject, Injectable } from '@nestjs/common';
 import {
   UserAggregate,
   UserEmail,
+  UserId,
   UserName,
 } from '@nwc/api/nest/ngshop/user/core/domain';
 import {
@@ -23,7 +24,11 @@ export class UserPersistenceQueryAdapter
   ) {}
 
   existsByEmail(email: UserEmail): Promise<boolean> {
-    return this.userRepository.exists(email.value);
+    return this.userRepository.exists(email);
+  }
+
+  existsById(userId: UserId): Promise<boolean> {
+    return this.userRepository.exists(userId);
   }
 
   async getUserByName(username: UserName): Promise<UserAggregate> {

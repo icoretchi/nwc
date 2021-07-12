@@ -30,7 +30,15 @@ export class UserEmail extends ValueObject<UserEmailProps> {
     );
   }
 
-  public static fromString(email: string): Result<UserEmail> {
-    return UserEmail.create({ value: email });
+  public static fromString(email: string): UserEmail {
+    const isValidEmail = isEmail(email);
+
+    if (!isValidEmail) {
+      throw Error(ErrorMessages.INVALID_EMAIL);
+    }
+
+    return new UserEmail({
+      value: email.toLocaleLowerCase(),
+    });
   }
 }

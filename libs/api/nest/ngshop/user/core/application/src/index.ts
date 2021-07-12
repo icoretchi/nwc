@@ -1,1 +1,2 @@
-export * from './lib/api-nest-ngshop-user-core-application.module';
+export * from './lib/user-application.module';
+export * from './lib/query-handlers';

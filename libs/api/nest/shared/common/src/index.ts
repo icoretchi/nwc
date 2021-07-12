@@ -13,3 +13,4 @@ export * from './lib/guards';
 export * from './lib/interceptors';
 export * from './lib/params';
 export * from './lib/repositories';
+export * from './lib/errors';

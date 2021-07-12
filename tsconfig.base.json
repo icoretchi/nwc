@@ -25,6 +25,9 @@
       "@nwc/api/nest/ngshop/user/core/ports": [
         "libs/api/nest/ngshop/user/core/ports/src/index.ts"
       ],
+      "@nwc/api/nest/ngshop/user/infrastructure/auth": [
+        "libs/api/nest/ngshop/user/infrastructure/auth/src/index.ts"
+      ],
       "@nwc/api/nest/ngshop/user/infrastructure/orms/mongoose": [
         "libs/api/nest/ngshop/user/infrastructure/orms/mongoose/src/index.ts"
       ],

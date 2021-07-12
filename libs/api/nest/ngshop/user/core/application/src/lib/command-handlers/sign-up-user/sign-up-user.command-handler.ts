@@ -1,61 +1,77 @@
 import { Inject } from '@nestjs/common';
 import { CommandHandler, ICommandHandler } from '@nestjs/cqrs';
 import {
-  CreateUserCommand,
+  EmailAlreadyExistsError,
+  UserAggregate,
+} from '@nwc/api/nest/ngshop/user/core/domain';
+import {
+  CREATE_USER_PORT,
+  CreateUserPort,
   EXISTS_BY_EMAIL_PORT,
-  EXISTS_BY_EMAIL_REPOSITORY_INTERFACE,
   ExistsByEmailPort,
-  ExistsByEmailRepositoryInterface,
-  GET_USER_BY_EMAIL_REPOSITORY_INTERFACE,
-  GetUserByEmailRepositoryInterface,
-  SAVE_USER_PORT,
-  SaveUserPort,
   SignUpUserCommand,
   TOKEN_PROVIDER_PORT,
   TokenProviderPort,
 } from '@nwc/api/nest/ngshop/user/core/ports';
-
 import {
-  Password,
-  Role,
-  USERS,
-  User,
-  UserId,
-  Username,
-  Users,
-} from '../../domain';
-import {
-  UserIdAlreadyTakenError,
-  UsernameAlreadyTakenError,
-} from '../../domain/exception/';
+  AppError,
+  Either,
+  Result,
+  left,
+  right,
+} from '@nwc/api/nest/shared/common';
 
-type Response = Either<AppError.UnexpectedError, Result<User>>;
+type Response = Either<
+  EmailAlreadyExistsError | AppError.UnexpectedError | Result<any>,
+  Result<{ user: UserAggregate; token: string }>
+>;
 
 @CommandHandler(SignUpUserCommand)
 export class SignUpUserCommandHandler
   implements ICommandHandler<SignUpUserCommand> {
   constructor(
-    @Inject(SAVE_USER_PORT)
-    private readonly userSaver: SaveUserPort,
+    @Inject(CREATE_USER_PORT)
+    private readonly userCreated: CreateUserPort,
     @Inject(EXISTS_BY_EMAIL_PORT)
     private readonly existsUser: ExistsByEmailPort,
     @Inject(TOKEN_PROVIDER_PORT)
     private readonly tokenProvider: TokenProviderPort
   ) {}
 
-  async execute(
-    command: CreateUserCommand
-  ): Promise<E.Either<SignUpUserErrors, { user: User; token: string }>> {
-    if (await this.existsUser.existsByEmail(command.email)) {
-      return E.left(SignUpUserErrors.EmailTaken);
+  async execute(command: SignUpUserCommand): Promise<Response> {
+    const { email, username, password } = command;
+    try {
+      if (await this.existsUser.existsByEmail(email)) {
+        return left(EmailAlreadyExistsError.with(email)) as Response;
+      }
+
+      const userOrError: Result<UserAggregate> = UserAggregate.create({
+        email,
+        name: username,
+        password,
+      });
+
+      if (userOrError.isFailure) {
+        return left(
+          Result.fail<UserAggregate>(userOrError.error.toString())
+        ) as Response;
+      }
+
+      const user: UserAggregate = userOrError.getValue();
+
+      const createdUser = await this.userCreated.create(user);
+
+      return right(
+        Result.ok<{ user: UserAggregate; token: string }>({
+          user: createdUser,
+          token: this.tokenProvider.signToken(
+            createdUser.id.toString(),
+            createdUser.email.value
+          ),
+        })
+      ) as Response;
+    } catch (err) {
+      return left(new AppError.UnexpectedError(err)) as Response;
     }
-    const user = new User(null, command.name, command.email, command.password);
-
-    const savedUser = await this.userSaver.save(await user.hashPassword());
-
-    return E.right({
-      user: savedUser,
-      token: this.tokenProvider.signToken(savedUser.id, savedUser.email),
-    });
   }
 }

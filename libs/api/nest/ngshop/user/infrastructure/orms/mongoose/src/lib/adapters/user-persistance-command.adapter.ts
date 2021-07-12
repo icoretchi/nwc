@@ -1,12 +1,16 @@
 import { Inject, Injectable } from '@nestjs/common';
 import { UserAggregate } from '@nwc/api/nest/ngshop/user/core/domain';
-import { SaveUserPort } from '@nwc/api/nest/ngshop/user/core/ports';
+import {
+  CreateUserPort,
+  SaveUserPort,
+} from '@nwc/api/nest/ngshop/user/core/ports';
 
 import { UserMapper } from '../mappers';
 import { UserRepository } from '../repositories';
 
 @Injectable()
-export class UserPersistenceCommandAdapter implements SaveUserPort {
+export class UserPersistenceCommandAdapter
+  implements SaveUserPort, CreateUserPort {
   constructor(
     @Inject(UserMapper) private readonly userMapper: UserMapper,
     private readonly userRepository: UserRepository
@@ -15,6 +19,12 @@ export class UserPersistenceCommandAdapter implements SaveUserPort {
   async save(user: UserAggregate): Promise<void> {
     return await this.userRepository.save(
       this.userMapper.mapToPersistence(user)
+    );
+  }
+
+  async create(user: UserAggregate): Promise<UserAggregate> {
+    return this.userMapper.mapToDomain(
+      await this.userRepository.create(this.userMapper.mapToPersistence(user))
     );
   }
 }

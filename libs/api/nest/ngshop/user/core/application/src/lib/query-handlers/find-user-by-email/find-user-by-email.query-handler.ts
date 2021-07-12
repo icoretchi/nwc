@@ -13,32 +13,33 @@ import {
   left,
   right,
 } from '@nwc/api/nest/shared/common';
+import { UnexpectedError } from '@nwc/api/nest/shared/common';
 
-import { GetUserByEmailErrors } from './get-user-by-email.errors';
-
-type Response = Either<AppError.UnexpectedError, Result<UserAggregate>>;
+import { UserNotFoundByEmailError } from '../../exceptions';
+import { FindUserByEmailResponse } from './find-user-by-email.response';
 
 @QueryHandler(FindUserByEmailQuery)
 export class FindUserByEmailQueryHandler
-  implements IQueryHandler<FindUserByEmailQuery> {
+  implements IQueryHandler<FindUserByEmailQuery, FindUserByEmailResponse> {
   constructor(
     @Inject(GET_USER_BY_EMAIL_PORT)
     private readonly users: GetUserByEmailPort
   ) {}
 
-  async execute(query: FindUserByEmailQuery): Promise<Response> {
-    const user = await this.users.getUserByEmail(query.email);
-    const userFound = !!user === true;
+  async execute(query: FindUserByEmailQuery): Promise<FindUserByEmailResponse> {
+    try {
+      const user = await this.users.getUserByEmail(query.email);
+      const userFound = !!user === true;
 
-    if (!userFound) {
-      return left(
-        new GetUserByEmailErrors.UserNotFoundError(query.email.value)
-      ) as Response;
+      if (!userFound) {
+        return left(
+          UserNotFoundByEmailError.with(query.email)
+        ) as FindUserByEmailResponse;
+      }
+
+      return right(Result.ok<UserAggregate>(user)) as FindUserByEmailResponse;
+    } catch (err) {
+      return left(UnexpectedError.with(err)) as FindUserByEmailResponse;
     }
-
-    return right(Result.ok<UserAggregate>(user));
-  }
-  catch(err) {
-    return left(new AppError.UnexpectedError(err));
   }
 }

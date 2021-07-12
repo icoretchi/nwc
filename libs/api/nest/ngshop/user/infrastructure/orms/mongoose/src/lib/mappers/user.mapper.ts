@@ -12,9 +12,9 @@ export class UserMapper {
   mapToDomain(user: UserEntity): UserAggregate {
     return UserAggregate.create(
       {
-        email: UserEmail.fromString(user.email).getResult(),
-        name: UserName.fromString(user.name).getResult(),
-        password: UserPassword.fromString(user.passwordHash).getResult(),
+        email: UserEmail.fromString(user.email),
+        name: UserName.fromString(user.name),
+        password: UserPassword.fromString(user.passwordHash),
       },
       new UniqueEntityID(user.id)
     ).getResult();
