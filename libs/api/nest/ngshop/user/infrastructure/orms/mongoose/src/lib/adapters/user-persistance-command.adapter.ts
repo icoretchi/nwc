@@ -1,4 +1,4 @@
-import { Inject, Injectable } from '@nestjs/common';
+import { Injectable } from '@nestjs/common';
 import { UserAggregate } from '@nwc/api/nest/ngshop/user/core/domain';
 import {
   CreateUserPort,
@@ -12,7 +12,7 @@ import { UserRepository } from '../repositories';
 export class UserPersistenceCommandAdapter
   implements SaveUserPort, CreateUserPort {
   constructor(
-    @Inject(UserMapper) private readonly userMapper: UserMapper,
+    private readonly userMapper: UserMapper,
     private readonly userRepository: UserRepository
   ) {}
 

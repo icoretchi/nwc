@@ -9,9 +9,7 @@ import {
   CreateUserCommand,
   CreateUserPort,
   EXISTS_BY_EMAIL_PORT,
-  EXISTS_BY_ID_PORT,
   ExistsByEmailPort,
-  ExistsByIdPort,
 } from '@nwc/api/nest/ngshop/user/core/ports';
 import {
   AppError,
@@ -33,9 +31,7 @@ export class CreateUserCommandHandler
     @Inject(CREATE_USER_PORT)
     private readonly userCreated: CreateUserPort,
     @Inject(EXISTS_BY_EMAIL_PORT)
-    private readonly existsUserByEmail: ExistsByEmailPort,
-    @Inject(EXISTS_BY_ID_PORT)
-    private readonly existsUserById: ExistsByIdPort
+    private readonly existsUserByEmail: ExistsByEmailPort
   ) {}
 
   async execute(command: CreateUserCommand): Promise<Response> {

@@ -4,6 +4,7 @@ import { MongooseModule } from '@nestjs/mongoose';
 import { UserPersistenceCommandAdapter } from './adapters';
 import { UserPersistenceQueryAdapter } from './adapters';
 import { UserEntity, UserSchema } from './entities';
+import { UserMapper } from './mappers';
 import { UserRepository } from './repositories';
 
 @Module({
@@ -14,6 +15,7 @@ import { UserRepository } from './repositories';
     UserRepository,
     UserPersistenceQueryAdapter,
     UserPersistenceCommandAdapter,
+    UserMapper,
   ],
   exports: [
     UserPersistenceQueryAdapter,

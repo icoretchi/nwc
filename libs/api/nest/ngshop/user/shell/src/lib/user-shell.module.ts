@@ -19,6 +19,7 @@ import {
   JwtStrategy,
 } from '@nwc/api/nest/ngshop/user/infrastructure/auth';
 import {
+  UserMapper,
   UserMongooseModule,
   UserPersistenceCommandAdapter,
   UserPersistenceQueryAdapter,
@@ -38,7 +39,7 @@ const QueryHandlers = [FindUserByEmailQueryHandler];
     UserTokenProviderModule,
     UserMongooseModule,
     PassportModule.register({ defaultStrategy: 'jwt' }),
-    AuthConfigModule,
+    // AuthConfigModule,
     AuthModule,
     CqrsModule,
   ],
@@ -46,6 +47,10 @@ const QueryHandlers = [FindUserByEmailQueryHandler];
     {
       provide: 'UserRepository',
       useClass: UserRepository,
+    },
+    {
+      provide: 'UserMapper',
+      useClass: UserMapper,
     },
     {
       provide: CREATE_USER_PORT,
