@@ -41,6 +41,9 @@
     "api-nest-ngshop-user-infrastructure-orms-mongoose": {
       "tags": []
     },
+    "api-nest-ngshop-user-infrastructure-token": {
+      "tags": []
+    },
     "api-nest-ngshop-user-shell": {
       "tags": []
     },

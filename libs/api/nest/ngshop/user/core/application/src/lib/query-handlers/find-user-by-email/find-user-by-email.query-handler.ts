@@ -6,13 +6,7 @@ import {
   GET_USER_BY_EMAIL_PORT,
   GetUserByEmailPort,
 } from '@nwc/api/nest/ngshop/user/core/ports';
-import {
-  AppError,
-  Either,
-  Result,
-  left,
-  right,
-} from '@nwc/api/nest/shared/common';
+import { Result, left, right } from '@nwc/api/nest/shared/common';
 import { UnexpectedError } from '@nwc/api/nest/shared/common';
 
 import { UserNotFoundByEmailError } from '../../exceptions';

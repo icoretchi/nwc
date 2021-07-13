@@ -31,6 +31,9 @@
       "@nwc/api/nest/ngshop/user/infrastructure/orms/mongoose": [
         "libs/api/nest/ngshop/user/infrastructure/orms/mongoose/src/index.ts"
       ],
+      "@nwc/api/nest/ngshop/user/infrastructure/token": [
+        "libs/api/nest/ngshop/user/infrastructure/token/src/index.ts"
+      ],
       "@nwc/api/nest/ngshop/user/shell": [
         "libs/api/nest/ngshop/user/shell/src/index.ts"
       ],

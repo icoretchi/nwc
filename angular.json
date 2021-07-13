@@ -324,6 +324,42 @@
         }
       }
     },
+    "api-nest-ngshop-user-infrastructure-token": {
+      "root": "libs/api/nest/ngshop/user/infrastructure/token",
+      "sourceRoot": "libs/api/nest/ngshop/user/infrastructure/token/src",
+      "projectType": "library",
+      "architect": {
+        "build": {
+          "builder": "@nrwl/node:package",
+          "outputs": ["{options.outputPath}"],
+          "options": {
+            "outputPath": "dist/libs/api/nest/ngshop/user/infrastructure/token",
+            "tsConfig": "libs/api/nest/ngshop/user/infrastructure/token/tsconfig.lib.json",
+            "packageJson": "libs/api/nest/ngshop/user/infrastructure/token/package.json",
+            "main": "libs/api/nest/ngshop/user/infrastructure/token/src/index.ts",
+            "assets": ["libs/api/nest/ngshop/user/infrastructure/token/*.md"]
+          }
+        },
+        "lint": {
+          "builder": "@nrwl/linter:eslint",
+          "options": {
+            "lintFilePatterns": [
+              "libs/api/nest/ngshop/user/infrastructure/token/**/*.ts"
+            ]
+          }
+        },
+        "test": {
+          "builder": "@nrwl/jest:jest",
+          "outputs": [
+            "coverage/libs/api/nest/ngshop/user/infrastructure/token"
+          ],
+          "options": {
+            "jestConfig": "libs/api/nest/ngshop/user/infrastructure/token/jest.config.js",
+            "passWithNoTests": true
+          }
+        }
+      }
+    },
     "api-nest-ngshop-user-shell": {
       "root": "libs/api/nest/ngshop/user/shell",
       "sourceRoot": "libs/api/nest/ngshop/user/shell/src",

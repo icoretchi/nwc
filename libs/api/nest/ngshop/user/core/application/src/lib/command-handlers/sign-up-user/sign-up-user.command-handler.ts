@@ -14,21 +14,17 @@ import {
   TokenProviderPort,
 } from '@nwc/api/nest/ngshop/user/core/ports';
 import {
-  AppError,
-  Either,
   Result,
+  UnexpectedError,
   left,
   right,
 } from '@nwc/api/nest/shared/common';
 
-type Response = Either<
-  EmailAlreadyExistsError | AppError.UnexpectedError | Result<any>,
-  Result<{ user: UserAggregate; token: string }>
->;
+import { SignUpUserResponse } from './sign-up-user.response';
 
 @CommandHandler(SignUpUserCommand)
 export class SignUpUserCommandHandler
-  implements ICommandHandler<SignUpUserCommand> {
+  implements ICommandHandler<SignUpUserCommand, SignUpUserResponse> {
   constructor(
     @Inject(CREATE_USER_PORT)
     private readonly userCreated: CreateUserPort,
@@ -38,11 +34,13 @@ export class SignUpUserCommandHandler
     private readonly tokenProvider: TokenProviderPort
   ) {}
 
-  async execute(command: SignUpUserCommand): Promise<Response> {
+  async execute(command: SignUpUserCommand): Promise<SignUpUserResponse> {
     const { email, username, password } = command;
     try {
-      if (await this.existsUser.existsByEmail(email)) {
-        return left(EmailAlreadyExistsError.with(email)) as Response;
+      const userEmailAlreadyExists = await this.existsUser.existsByEmail(email);
+
+      if (userEmailAlreadyExists) {
+        return left(EmailAlreadyExistsError.with(email)) as SignUpUserResponse;
       }
 
       const userOrError: Result<UserAggregate> = UserAggregate.create({
@@ -54,7 +52,7 @@ export class SignUpUserCommandHandler
       if (userOrError.isFailure) {
         return left(
           Result.fail<UserAggregate>(userOrError.error.toString())
-        ) as Response;
+        ) as SignUpUserResponse;
       }
 
       const user: UserAggregate = userOrError.getValue();
@@ -69,9 +67,9 @@ export class SignUpUserCommandHandler
             createdUser.email.value
           ),
         })
-      ) as Response;
+      ) as SignUpUserResponse;
     } catch (err) {
-      return left(new AppError.UnexpectedError(err)) as Response;
+      return left(UnexpectedError.with(err)) as SignUpUserResponse;
     }
   }
 }

@@ -81,7 +81,7 @@ export class AuthController {
           switch (error) {
             case SignUpUserErrors.EmailTaken:
               throw new UnprocessableEntityException(
-                'Email or password is already taken'
+                'Email or username is already taken'
               );
           }
         },

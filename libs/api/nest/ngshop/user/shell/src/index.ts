@@ -1,1 +1,1 @@
-export * from './lib/api-nest-ngshop-user-shell.module';
+export * from './lib/user-shell.module';
