@@ -3,13 +3,13 @@ export const PASSWORD_MAX_LENGTH = 20;
 
 import { Guard, Result, ValueObject } from '@nwc/api/nest/shared/common';
 import { compareSync, genSaltSync, hashSync } from 'bcryptjs';
-import * as bcrypt from 'bcryptjs';
 
 import { ErrorMessages } from '../../error-messages/messages';
 import { PasswordInterface } from './interfaces/password.interface';
 
-const isEncryptPass = /\$2b\$\d\d\$[\s\S]{53}|{.}\b/gm;
-
+const isEncryptPass = new RegExp(
+  '^(?=.*[a-z])(?=.*[A-Z])(?=.*[0-9])(?=.*[!@#$%^&*])(?=.{8,})'
+);
 export interface UserPasswordProps {
   value: string;
 }
@@ -44,21 +44,6 @@ export class UserPassword
     return plainText === this.props.value;
   }
 
-  async hashPassword(password: string): Promise<string> {
-    const salt = genSaltSync();
-    password = hashSync(password, salt);
-    this.isEncrypted = true;
-    return password;
-  }
-
-  async getHashedValue(): Promise<string> {
-    if (this.isAlreadyEncrypted) {
-      return this.props.value;
-    } else {
-      return this.hashPassword(this.props.value);
-    }
-  }
-
   public static create(props: UserPasswordProps): Result<UserPassword> {
     const isEncrypt = isEncryptPass.test(props.value);
 
@@ -83,7 +68,6 @@ export class UserPassword
       throw new Error(passwordResult.message);
     }
     const isEncrypt = isEncryptPass.test(password);
-
     if (!isEncrypt) {
       const isValidPasswordLength =
         password.length >= PASSWORD_MIN_LENGTH &&

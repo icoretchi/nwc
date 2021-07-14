@@ -14,3 +14,4 @@ export * from './lib/interceptors';
 export * from './lib/params';
 export * from './lib/repositories';
 export * from './lib/errors';
+export * from './lib/midleware';

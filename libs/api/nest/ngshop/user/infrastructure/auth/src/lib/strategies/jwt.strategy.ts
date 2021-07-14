@@ -1,4 +1,4 @@
-import { Inject, Injectable } from '@nestjs/common';
+import { Injectable } from '@nestjs/common';
 import { QueryBus } from '@nestjs/cqrs';
 import { PassportStrategy } from '@nestjs/passport';
 import { FindUserByEmailResponse } from '@nwc/api/nest/ngshop/user/core/application';
@@ -9,7 +9,7 @@ import {
   AppUser,
   AuthenticatedUser,
 } from '@nwc/api/nest/shared/common';
-import { JwtConfig, jwtConfig } from '@nwc/api/nest/shared/config/auth';
+import { OAuth2ConfigService } from '@nwc/api/nest/shared/config/auth';
 import { ExtractJwt, Strategy } from 'passport-jwt';
 
 import { JwtPayloadDto } from '../dto/jwt-payload.dto';
@@ -17,14 +17,14 @@ import { JwtPayloadDto } from '../dto/jwt-payload.dto';
 @Injectable()
 export class JwtStrategy extends PassportStrategy(Strategy) {
   constructor(
-    @Inject(jwtConfig.KEY)
-    private readonly jwtConf: JwtConfig,
-    private queryBus: QueryBus
+    // @Inject(jwtConfig.KEY)
+    private readonly oAuth2ConfigService: OAuth2ConfigService,
+    private readonly queryBus: QueryBus
   ) {
     super({
       jwtFromRequest: ExtractJwt.fromAuthHeaderAsBearerToken(),
       ignoreExpiration: false,
-      secretOrKey: jwtConf.jwtSecret,
+      secretOrKey: oAuth2ConfigService.jwtSecret,
     });
   }
 

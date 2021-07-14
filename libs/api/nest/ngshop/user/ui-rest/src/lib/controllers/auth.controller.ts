@@ -20,7 +20,6 @@ import {
 } from '@nwc/api/nest/ngshop/user/core/domain';
 import { SignUpUserCommand } from '@nwc/api/nest/ngshop/user/core/ports';
 import { BaseController, TextUtils } from '@nwc/api/nest/shared/common';
-import { plainToClass } from 'class-transformer';
 import { Response } from 'express';
 
 import { AuthResponseDto, SignUpRequestDto } from '../dto';
@@ -44,7 +43,6 @@ export class AuthController extends BaseController {
       email: TextUtils.sanitize(req.email),
       password: req.password,
     };
-
     try {
       const result = await this.commandBus.execute(
         new SignUpUserCommand(
@@ -53,7 +51,6 @@ export class AuthController extends BaseController {
           UserPassword.fromString(dto.password)
         )
       );
-
       if (result.isLeft()) {
         const error = result.value;
 
@@ -64,10 +61,7 @@ export class AuthController extends BaseController {
             return this.fail(res, error.errorValue().message);
         }
       } else {
-        return this.ok(
-          res,
-          plainToClass(AuthResponseDto, result.value.getValue())
-        );
+        return this.ok(res, new AuthResponseDto(result.value.getValue()));
       }
     } catch (err) {
       return this.fail(res, err);

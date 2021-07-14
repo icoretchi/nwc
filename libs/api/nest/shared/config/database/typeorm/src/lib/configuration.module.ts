@@ -8,7 +8,6 @@ import { validationSchema } from './validation-scheme';
 @Module({
   imports: [
     ConfigModule.forRoot({
-      isGlobal: true,
       load: [typeOrmConfig],
       validationSchema: validationSchema,
     }),

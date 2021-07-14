@@ -42,13 +42,11 @@ export class UserAggregate extends AggregateRoot<UserAggregateProps> {
       { argument: props.name, argumentName: 'name' },
       { argument: props.email, argumentName: 'email' },
     ]);
-
     if (!guardResult.succeeded) {
       return Result.fail<UserAggregate>(guardResult.message);
     }
 
     const user = new UserAggregate({ ...props }, id);
-
     return Result.ok<UserAggregate>(user);
   }
 }

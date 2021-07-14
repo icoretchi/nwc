@@ -38,11 +38,11 @@ export class SignUpUserCommandHandler
     const { email, username, password } = command;
     try {
       const userEmailAlreadyExists = await this.existsUser.existsByEmail(email);
-
       if (userEmailAlreadyExists) {
         return left(EmailAlreadyExistsError.with(email)) as SignUpUserResponse;
       }
 
+      await password.encryptPassword();
       const userOrError: Result<UserAggregate> = UserAggregate.create({
         email,
         name: username,

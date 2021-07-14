@@ -1,11 +1,18 @@
-import { Expose, Type } from 'class-transformer';
-
-import { UserResponseDto } from './user-response.dto';
+import { ApiProperty } from '@nestjs/swagger';
+import { UserAggregate } from '@nwc/api/nest/ngshop/user/core/domain';
 
 export class AuthResponseDto {
-  @Expose()
-  @Type(() => UserResponseDto)
-  user: UserResponseDto;
-  @Expose()
+  constructor(auth: { user: UserAggregate; token: string }) {
+    this.email = auth.user.email.value;
+    this.token = auth.token;
+  }
+
+  @ApiProperty({
+    example: 'joh-doe@gmail.com',
+    description: "User's email address",
+  })
+  email: string;
+
+  @ApiProperty()
   token: string;
 }

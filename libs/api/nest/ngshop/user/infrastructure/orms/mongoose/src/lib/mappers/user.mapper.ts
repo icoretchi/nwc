@@ -9,31 +9,32 @@ import { UniqueEntityID } from '@nwc/api/nest/shared/common';
 import { UserEntity } from '../entities';
 
 export class UserMapper {
+  // toDto (user: UserAggregate): UserDTO {
+  //   return {
+  //     username: user.username.value,
+  //     isEmailVerified: user.isEmailVerified,
+  //     isAdminUser: user.isAdminUser,
+  //     isDeleted: user.isDeleted
+  //   }
+  // }
   mapToDomain(user: UserEntity): UserAggregate {
-    return UserAggregate.create(
+    const userMapped = UserAggregate.create(
       {
         email: UserEmail.fromString(user.email),
         name: UserName.fromString(user.name),
         password: UserPassword.fromString(user.passwordHash),
       },
       new UniqueEntityID(user.id)
-    ).getResult();
+    );
+    return userMapped.getResult();
   }
 
-  async mapToPersistence(user: UserAggregate): Promise<UserEntity> {
-    let password: string = null;
-    if (!!user.password === true) {
-      if (user.password.isAlreadyEncrypted) {
-        password = user.password.value;
-      } else {
-        password = await user.password.getHashedValue();
-      }
-    }
+  mapToPersistence(user: UserAggregate): UserEntity {
     return {
       id: user.id.toString(),
       name: user.name.value,
       email: user.email.value,
-      passwordHash: password,
+      passwordHash: user.password.value,
     };
   }
 }

@@ -7,6 +7,7 @@ import {
   JwtConfigService,
 } from '@nwc/api/nest/shared/config/auth';
 
+import { AuthService } from './services';
 import { JwtStrategy } from './strategies';
 
 @Module({
@@ -19,7 +20,7 @@ import { JwtStrategy } from './strategies';
       useClass: JwtConfigService,
     }),
   ],
-  providers: [JwtStrategy],
-  exports: [JwtStrategy],
+  providers: [AuthService, JwtStrategy],
+  exports: [AuthService],
 })
 export class AuthModule {}

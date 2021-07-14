@@ -1,10 +1,10 @@
-import { Module } from '@nestjs/common';
-import { CqrsModule } from '@nestjs/cqrs';
-import { PassportModule } from '@nestjs/passport';
+import { Module, OnModuleInit } from '@nestjs/common';
+import { CommandBus, CqrsModule, QueryBus } from '@nestjs/cqrs';
 import {
   CreateUserCommandHandler,
   FindUserByEmailQueryHandler,
   SignUpUserCommandHandler,
+  UserApplicationModule,
 } from '@nwc/api/nest/ngshop/user/core/application';
 import {
   CREATE_USER_PORT,
@@ -14,10 +14,7 @@ import {
   SAVE_USER_PORT,
   TOKEN_PROVIDER_PORT,
 } from '@nwc/api/nest/ngshop/user/core/ports';
-import {
-  AuthModule,
-  JwtStrategy,
-} from '@nwc/api/nest/ngshop/user/infrastructure/auth';
+import { AuthModule } from '@nwc/api/nest/ngshop/user/infrastructure/auth';
 import {
   UserMapper,
   UserMongooseModule,
@@ -29,17 +26,18 @@ import {
   TokenProviderAdapter,
   UserTokenProviderModule,
 } from '@nwc/api/nest/ngshop/user/infrastructure/token';
-import { AuthConfigModule } from '@nwc/api/nest/shared/config/auth';
 
-const CommandHandlers = [CreateUserCommandHandler, SignUpUserCommandHandler];
-const QueryHandlers = [FindUserByEmailQueryHandler];
-
+const commandHandlers = [CreateUserCommandHandler, SignUpUserCommandHandler];
+const queryHandlers = [FindUserByEmailQueryHandler];
+const providers = [
+  { provide: CommandBus, useClass: CommandBus },
+  { provide: QueryBus, useClass: QueryBus },
+];
 @Module({
   imports: [
+    UserApplicationModule,
     UserTokenProviderModule,
     UserMongooseModule,
-    PassportModule.register({ defaultStrategy: 'jwt' }),
-    // AuthConfigModule,
     AuthModule,
     CqrsModule,
   ],
@@ -76,9 +74,17 @@ const QueryHandlers = [FindUserByEmailQueryHandler];
       provide: TOKEN_PROVIDER_PORT,
       useClass: TokenProviderAdapter,
     },
-    JwtStrategy,
-    ...CommandHandlers,
-    ...QueryHandlers,
+    ...commandHandlers,
+    ...queryHandlers,
+    ...providers,
   ],
+  exports: [...commandHandlers, ...queryHandlers, ...providers],
 })
-export class UserShellModule {}
+export class UserShellModule implements OnModuleInit {
+  constructor(private queryBus: QueryBus, private commandBus: CommandBus) {}
+
+  onModuleInit(): any {
+    this.commandBus.register(commandHandlers);
+    this.queryBus.register(queryHandlers);
+  }
+}
