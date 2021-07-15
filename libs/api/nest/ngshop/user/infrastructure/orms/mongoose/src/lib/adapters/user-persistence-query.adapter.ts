@@ -24,7 +24,7 @@ export class UserPersistenceQueryAdapter
   ) {}
 
   existsByEmail(email: UserEmail): Promise<boolean> {
-    return this.userRepository.exists(email);
+    return this.userRepository.exists({ email: email.value });
   }
 
   existsById(userId: UserId): Promise<boolean> {

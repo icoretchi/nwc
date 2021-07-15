@@ -1149,7 +1149,8 @@
         "serve": {
           "builder": "@nrwl/node:execute",
           "options": {
-            "buildTarget": "ngshop-api-nest-ddd:build"
+            "buildTarget": "ngshop-api-nest-ddd:build",
+            "inspect": true
           }
         },
         "lint": {

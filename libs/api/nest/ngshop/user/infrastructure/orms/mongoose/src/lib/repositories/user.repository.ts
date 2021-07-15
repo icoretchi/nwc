@@ -20,7 +20,7 @@ export class UserRepository {
   }
 
   public async exists(query: any): Promise<boolean> {
-    return await this.userModel.exists({ query });
+    return await this.userModel.exists(query);
   }
 
   async create(data: any): Promise<UserEntity> {
