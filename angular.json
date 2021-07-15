@@ -152,6 +152,70 @@
         }
       }
     },
+    "api-nest-nghrms-shared-common": {
+      "root": "libs/api/nest/nghrms/shared/common",
+      "sourceRoot": "libs/api/nest/nghrms/shared/common/src",
+      "projectType": "library",
+      "architect": {
+        "build": {
+          "builder": "@nrwl/node:package",
+          "outputs": ["{options.outputPath}"],
+          "options": {
+            "outputPath": "dist/libs/api/nest/nghrms/shared/common",
+            "tsConfig": "libs/api/nest/nghrms/shared/common/tsconfig.lib.json",
+            "packageJson": "libs/api/nest/nghrms/shared/common/package.json",
+            "main": "libs/api/nest/nghrms/shared/common/src/index.ts",
+            "assets": ["libs/api/nest/nghrms/shared/common/*.md"]
+          }
+        },
+        "lint": {
+          "builder": "@nrwl/linter:eslint",
+          "options": {
+            "lintFilePatterns": ["libs/api/nest/nghrms/shared/common/**/*.ts"]
+          }
+        },
+        "test": {
+          "builder": "@nrwl/jest:jest",
+          "outputs": ["coverage/libs/api/nest/nghrms/shared/common"],
+          "options": {
+            "jestConfig": "libs/api/nest/nghrms/shared/common/jest.config.js",
+            "passWithNoTests": true
+          }
+        }
+      }
+    },
+    "api-nest-nghrms-users": {
+      "root": "libs/api/nest/nghrms/users",
+      "sourceRoot": "libs/api/nest/nghrms/users/src",
+      "projectType": "library",
+      "architect": {
+        "build": {
+          "builder": "@nrwl/node:package",
+          "outputs": ["{options.outputPath}"],
+          "options": {
+            "outputPath": "dist/libs/api/nest/nghrms/users",
+            "tsConfig": "libs/api/nest/nghrms/users/tsconfig.lib.json",
+            "packageJson": "libs/api/nest/nghrms/users/package.json",
+            "main": "libs/api/nest/nghrms/users/src/index.ts",
+            "assets": ["libs/api/nest/nghrms/users/*.md"]
+          }
+        },
+        "lint": {
+          "builder": "@nrwl/linter:eslint",
+          "options": {
+            "lintFilePatterns": ["libs/api/nest/nghrms/users/**/*.ts"]
+          }
+        },
+        "test": {
+          "builder": "@nrwl/jest:jest",
+          "outputs": ["coverage/libs/api/nest/nghrms/users"],
+          "options": {
+            "jestConfig": "libs/api/nest/nghrms/users/jest.config.js",
+            "passWithNoTests": true
+          }
+        }
+      }
+    },
     "api-nest-ngshop-user-core-application": {
       "root": "libs/api/nest/ngshop/user/core/application",
       "sourceRoot": "libs/api/nest/ngshop/user/core/application/src",

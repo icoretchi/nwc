@@ -26,6 +26,12 @@
       "tags": [],
       "implicitDependencies": ["admin"]
     },
+    "api-nest-nghrms-shared-common": {
+      "tags": []
+    },
+    "api-nest-nghrms-users": {
+      "tags": []
+    },
     "api-nest-ngshop-user-core-application": {
       "tags": []
     },

@@ -16,6 +16,10 @@
     "baseUrl": ".",
     "paths": {
       "@env/*": ["environments/*"],
+      "@nwc/api/nest/nghrms/shared/common": [
+        "libs/api/nest/nghrms/shared/common/src/index.ts"
+      ],
+      "@nwc/api/nest/nghrms/users": ["libs/api/nest/nghrms/users/src/index.ts"],
       "@nwc/api/nest/ngshop/user/core/application": [
         "libs/api/nest/ngshop/user/core/application/src/index.ts"
       ],

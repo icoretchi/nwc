@@ -1,4 +1,4 @@
-export * from './lib/api-nest-shared-common.module';
+export * from './lib/common.module';
 export * from './lib/validation';
 export * from './lib/exceptions/';
 export * from './lib/domain-events';
@@ -15,3 +15,4 @@ export * from './lib/params';
 export * from './lib/repositories';
 export * from './lib/errors';
 export * from './lib/midleware';
+export * from './lib/value-objects';
