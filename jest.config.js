@@ -37,5 +37,6 @@ module.exports = {
     '<rootDir>/libs/api/nest/ngshop/user/infrastructure/token',
     '<rootDir>/libs/api/nest/nghrms/users',
     '<rootDir>/libs/api/nest/nghrms/shared/common',
+    '<rootDir>/apps/nghrms-api-nest',
   ],
 };

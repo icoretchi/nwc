@@ -992,6 +992,56 @@
         }
       }
     },
+    "nghrms-api-nest": {
+      "root": "apps/nghrms-api-nest",
+      "sourceRoot": "apps/nghrms-api-nest/src",
+      "projectType": "application",
+      "architect": {
+        "build": {
+          "builder": "@nrwl/node:build",
+          "outputs": ["{options.outputPath}"],
+          "options": {
+            "outputPath": "dist/apps/nghrms-api-nest",
+            "main": "apps/nghrms-api-nest/src/main.ts",
+            "tsConfig": "apps/nghrms-api-nest/tsconfig.app.json",
+            "assets": ["apps/nghrms-api-nest/src/assets"]
+          },
+          "configurations": {
+            "production": {
+              "optimization": true,
+              "extractLicenses": true,
+              "inspect": false,
+              "fileReplacements": [
+                {
+                  "replace": "apps/nghrms-api-nest/src/environments/environment.ts",
+                  "with": "apps/nghrms-api-nest/src/environments/environment.prod.ts"
+                }
+              ]
+            }
+          }
+        },
+        "serve": {
+          "builder": "@nrwl/node:execute",
+          "options": {
+            "buildTarget": "nghrms-api-nest:build"
+          }
+        },
+        "lint": {
+          "builder": "@nrwl/linter:eslint",
+          "options": {
+            "lintFilePatterns": ["apps/nghrms-api-nest/**/*.ts"]
+          }
+        },
+        "test": {
+          "builder": "@nrwl/jest:jest",
+          "outputs": ["coverage/apps/nghrms-api-nest"],
+          "options": {
+            "jestConfig": "apps/nghrms-api-nest/jest.config.js",
+            "passWithNoTests": true
+          }
+        }
+      }
+    },
     "ngshop": {
       "projectType": "application",
       "root": "apps/ngshop",
